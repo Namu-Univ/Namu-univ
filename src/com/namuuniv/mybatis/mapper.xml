@@ -3,5 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NAMU">
+
+	
+	<!-- 학생 추가 기능 -->
+	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
+		INSERT INTO STUDENT (ID, DEPT_ID, PASSWORD, NAME, BIRTH_DATE
+		                  , GENDER, ADDRESS, TEL, GRADE, SEMESTER
+		                  , ENTRANCE_DATE, GRADUATION_DATE)
+		VALUES (STUDENT_SEQ.NEXTVAL, #{deptId}, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}
+		      , #{gender} , #{address}, #{tel}, #{grade}, #{semester}
+		      , #{entranceDate}, #{graduationDate})		
+	</insert>
+	
+	<!-- 교수 추가 기능 -->
+	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+		INSERT INTO PROFESSOR (ID, PASSWORD, NAME, BIRTH_DATE, GENDER
+		                     , ADDRESS, TEL, HIRE_DATE, DEPT_ID)
+		VALUES (PROFESSOR_SEQ.NEXTVAL, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}, #{gender}
+		      , #{address}, #{tel}, #{hireDate}, #{deptId})
+	</insert>
+	
+	<!-- 학과 id 존재 여부 -->
+	<select id="validDeptId" resultType="boolean">
+		SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+		FROM DEPARTMENT
+		WHERE ID = #{deptId}
+	</select>
 	
 </mapper>
