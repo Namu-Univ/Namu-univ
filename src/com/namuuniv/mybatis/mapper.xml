@@ -4,6 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NAMU">
 
+	<!-- 교직원 추가 기능 -->
+	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
+		INSERT INTO STAFF (ID, PASSWORD, NAME, BIRTH_DATE, GENDER
+		                , ADDRESS, TEL, HIRE_DATE, DEPT)
+		VALUES (STAFF_SEQ.NEXTVAL, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}, #{gender}
+		     , #{address}, #{tel}, #{hireDate, jdbcType=DATE}, #{dept})
+	</insert>
 	
 	<!-- 학생 추가 기능 -->
 	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
@@ -25,9 +32,11 @@
 	
 	<!-- 학과 id 존재 여부 -->
 	<select id="validDeptId" resultType="boolean">
+	<![CDATA[
 		SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
 		FROM DEPARTMENT
 		WHERE ID = #{deptId}
+	]]>
 	</select>
 	
 </mapper>

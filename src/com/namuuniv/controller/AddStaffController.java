@@ -1,0 +1,58 @@
+package com.namuuniv.controller;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.namuuniv.dao.StaffDAO;
+import com.namuuniv.vo.StaffVO;
+
+@WebServlet("/addStaff")
+public class AddStaffController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("addStaff doGet()");
+		
+		StaffVO staff = new StaffVO();
+		
+		// 파라미터 값을 문자열로 받아와서 sql.Date 객체로 변환
+		String birthDateStr = request.getParameter("birthDate");
+		String hireDateStr = request.getParameter("hireDate");
+		Date birthDateSql = Date.valueOf(birthDateStr);
+		Date hireDateSql = null;
+		if (hireDateStr != null && !hireDateStr.isEmpty()) {
+			hireDateSql = Date.valueOf(hireDateStr);
+		}
+		
+		staff.setName(request.getParameter("name"));
+		staff.setBirthDate(birthDateSql);
+		staff.setGender(request.getParameter("gender"));
+		staff.setAddress(request.getParameter("address"));
+		staff.setTel(request.getParameter("tel"));
+		staff.setHireDate(hireDateSql);
+		staff.setDept(request.getParameter("dept"));
+		
+		int result = StaffDAO.insertStaff(staff);
+		if (result > 0) {
+			response.sendRedirect("addStaff.jsp");
+		} else {
+			request.setAttribute("error", "등록에 실패했습니다.");
+			request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("addStaff doPost()");
+		request.setCharacterEncoding("UTF-8");
+		doGet(request, response);
+	}
+
+}

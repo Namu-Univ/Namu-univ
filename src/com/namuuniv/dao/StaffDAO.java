@@ -4,9 +4,20 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.namuuniv.mybatis.DBService;
 import com.namuuniv.vo.ProfessorVO;
+import com.namuuniv.vo.StaffVO;
 import com.namuuniv.vo.StudentVO;
 
 public class StaffDAO {
+	
+	// 교직원 추가
+	public static int insertStaff(StaffVO vo) {
+		try (SqlSession ss = DBService.getFactory().openSession(true)) {
+			return ss.insert("NAMU.insertStaff", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 
 	// 학생 추가
 	public static int insertStudent(StudentVO vo) {
