@@ -25,19 +25,28 @@
 		<input type="text" id="address" name="address"><br>
 		
 		<label for="tel">전화번호</label>
-		<input type="text" id="tel" name="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="010-1234-5678"><br>
+		<input type="text" id="tel" name="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="000-0000-0000"><br>
 		
 		<label for="hireDate">고용일</label>
 		<input type="date" id="hireDate" name="hireDate"><br>
 		
 		<label for="dept">부서</label>
-		<input type="text" id="dept" name="dept"><br>
+		<select id="dept" name="dept">
+			<option value="" selected disabled>부서를 선택하세요</option>
+			<option value="교무처">교무처</option>
+			<option value="학생처">학생처</option>
+			<option value="사무국">사무국</option>
+		</select><br>
 		
 		<input type="submit" value="등록">
 	</form>
 		
 	<%-- 오류 메시지 --%>
-	<c:if test="${not empty error }">${error }</c:if>
+	<c:if test="${not empty error}">
+	    <script>
+	        alert('${error}');
+	    </script>
+	</c:if>
 	
 </body>
 </html>

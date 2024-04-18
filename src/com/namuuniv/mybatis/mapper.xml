@@ -6,29 +6,48 @@
 
 	<!-- 교직원 추가 기능 -->
 	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
-		INSERT INTO STAFF (ID, PASSWORD, NAME, BIRTH_DATE, GENDER
-		                , ADDRESS, TEL, HIRE_DATE, DEPT)
-		VALUES (STAFF_SEQ.NEXTVAL, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}, #{gender}
-		     , #{address}, #{tel}, #{hireDate, jdbcType=DATE}, #{dept})
+		INSERT INTO STAFF (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                 , TEL, HIRE_DATE, DEPT)
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{dept})
 	</insert>
 	
 	<!-- 학생 추가 기능 -->
 	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
-		INSERT INTO STUDENT (ID, DEPT_ID, PASSWORD, NAME, BIRTH_DATE
-		                  , GENDER, ADDRESS, TEL, GRADE, SEMESTER
-		                  , ENTRANCE_DATE, GRADUATION_DATE)
-		VALUES (STUDENT_SEQ.NEXTVAL, #{deptId}, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}
-		      , #{gender} , #{address}, #{tel}, #{grade}, #{semester}
-		      , #{entranceDate}, #{graduationDate})		
+		INSERT INTO STUDENT (ID, DEPT_ID, NAME, BIRTH_DATE, GENDER
+		                   , ADDRESS, TEL, GRADE, SEMESTER, ENTRANCE_DATE
+		                   , GRADUATION_DATE)
+		VALUES (#{id}, #{deptId}, #{name}, #{birthDate}, #{gender}
+		      , #{address}, #{tel}, #{grade}, #{semester}, #{entranceDate}
+		      , #{graduationDate})		
 	</insert>
 	
 	<!-- 교수 추가 기능 -->
 	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
-		INSERT INTO PROFESSOR (ID, PASSWORD, NAME, BIRTH_DATE, GENDER
-		                     , ADDRESS, TEL, HIRE_DATE, DEPT_ID)
-		VALUES (PROFESSOR_SEQ.NEXTVAL, TO_CHAR(#{birthDate}, 'YYYYMMDD'), #{name}, #{birthDate}, #{gender}
-		      , #{address}, #{tel}, #{hireDate}, #{deptId})
+		INSERT INTO PROFESSOR (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                     , TEL, HIRE_DATE, DEPT_ID)
+		VALUES (PROFESSOR_SEQ.NEXTVAL, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{deptId})
 	</insert>
+	
+	<!-- 사용자 추가 기능 -->
+	<insert id="insertUsers" parameterType="com.namuuniv.vo.UsersVO">
+		INSERT INTO USERS (ID, PASSWORD, ROLE)
+		VALUES(#{id}, #{password}, #{role})
+	</insert>
+	
+	<!-- id 채번 값 -->
+	<select id="nextStaffId" resultType="int">
+		SELECT STAFF_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextStudentId" resultType="int">
+		SELECT STUDENT_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextProfessorId" resultType="int">
+		SELECT PROFESSOR_SEQ.NEXTVAL FROM DUAL	
+	</select>
 	
 	<!-- 학과 id 존재 여부 -->
 	<select id="validDeptId" resultType="boolean">

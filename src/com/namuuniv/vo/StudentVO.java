@@ -6,7 +6,6 @@ public class StudentVO {
 
 	private int id;
 	private int deptId;
-	private String password;
 	private String name;
 	private Date birthDate;
 	private String gender;
@@ -28,12 +27,6 @@ public class StudentVO {
 	}
 	public void setDeptId(int deptId) {
 		this.deptId = deptId;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -92,10 +85,9 @@ public class StudentVO {
 	
 	@Override
 	public String toString() {
-		return "StudentVO [id=" + id + ", deptId=" + deptId + ", password=" + password + ", name=" + name
-				+ ", birthDate=" + birthDate + ", gender=" + gender + ", address=" + address + ", tel=" + tel
-				+ ", grade=" + grade + ", semester=" + semester + ", entranceDate=" + entranceDate + ", graduationDate="
-				+ graduationDate + "]";
+		return "StudentVO [id=" + id + ", deptId=" + deptId + ", name=" + name + ", birthDate=" + birthDate
+				+ ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", grade=" + grade + ", semester="
+				+ semester + ", entranceDate=" + entranceDate + ", graduationDate=" + graduationDate + "]";
 	}
 	
 }
