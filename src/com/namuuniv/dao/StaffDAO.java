@@ -24,7 +24,7 @@ public class StaffDAO {
 			if (result > 0) {
 				UsersVO user = new UsersVO();
 				user.setId(staffId);
-				user.setPassword(vo.getBirthDate());
+				user.setPassword(formatDate(vo.getBirthDate()));
 				user.setRole("staff");
 				ss.insert("NAMU.insertUsers", user);
 				ss.commit();
@@ -49,7 +49,7 @@ public class StaffDAO {
 			if (result > 0) {
 				UsersVO user = new UsersVO();
 				user.setId(vo.getId());
-				user.setPassword(vo.getBirthDate());
+				user.setPassword(formatDate(vo.getBirthDate()));
 				user.setRole("student");
 				ss.insert("NAMU.insertUsers", user);
 				ss.commit();
@@ -74,7 +74,7 @@ public class StaffDAO {
 			if (result > 0) {
 				UsersVO user = new UsersVO();
 				user.setId(professorId);
-				user.setPassword(vo.getBirthDate());
+				user.setPassword(formatDate(vo.getBirthDate()));
 				user.setRole("professor");
 				ss.insert("NAMU.insertUsers", user);
 				ss.commit();
@@ -86,6 +86,11 @@ public class StaffDAO {
 			ss.close();
 		}
 		return -1;
+	}
+	
+	// 생년월일 YYYYMMDD 형식으로 변환
+	private static String formatDate(String birthDate) {
+		return birthDate.replaceAll("-", "");
 	}
 
 	// 학과 조회

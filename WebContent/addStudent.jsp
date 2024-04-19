@@ -31,12 +31,12 @@
 		<input type="date" id="entranceDate" name="entranceDate" required><br>
 		
 		<label for="deptId">학과</label>
-		<select id="deptId" name="deptId" required>
-			<option value="" selected disabled>학과를 선택하세요</option>
-			<c:forEach items="${departments}" var="dept">
-				<option value="${dept.id}">${dept.name}</option>
-			</c:forEach>
-		</select><br>
+        <select id="deptId" name="deptId" required>
+            <option value="" selected disabled>학과를 선택하세요</option>
+            <c:forEach items="${departments}" var="dept">
+                <option value="${dept.id}">${dept.name}</option>
+            </c:forEach>
+        </select><br>
 		
 		<label for="grade">학년</label>
 		<select id="grade" name="grade" required>
