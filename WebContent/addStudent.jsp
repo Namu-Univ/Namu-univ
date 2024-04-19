@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
 		<input type="text" id="address" name="address"><br>
 		
 		<label>전화번호</label>
-		<input type="text" id="tel" name="tel" pattern="[0~9]{3}-[0~9]{4}-[0~9]{4}" placeholder="000-0000-0000"><br>
+		<input type="text" id="tel" name="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="000-0000-0000"><br>
 		
 		<label>입학일</label>
 		<input type="date" id="entranceDate" name="entranceDate" required><br>
@@ -32,22 +33,9 @@
 		<label for="deptId">학과</label>
 		<select id="deptId" name="deptId" required>
 			<option value="" selected disabled>학과를 선택하세요</option>
-			<option value="" disabled>---인문대학---</option>
-			<option value="0001">언어학과</option>
-			<option value="0002">철학과</option>
-			<option value="0003">역사학과</option>
-			<option value=""  disabled>---사회과학대학---</option>
-			<option value="0004">경영학과</option>
-			<option value="0005">정치외교학과</option>
-			<option value="0006">심리학과</option>
-			<option value=""  disabled>---자연과학대학---</option>
-			<option value="0007">수학과</option>
-			<option value="0008">물리학과</option>
-			<option value="0009">화학과</option>
-			<option value=""  disabled>---공과대학---</option>
-			<option value="0010">컴퓨터공학과</option>
-			<option value="0011">건축학과</option>
-			<option value="0012">전자공학과</option>
+			<c:forEach items="${departments}" var="dept">
+				<option value="${dept.id}">${dept.name}</option>
+			</c:forEach>
 		</select><br>
 		
 		<label for="grade">학년</label>
@@ -60,8 +48,23 @@
 		</select><br>
 		
 		<label for="semester">학기</label>
+		<select id="semester" name="semester" required>
+			<option value="" selected disabled>학기를 선택하세요</option>
+			<option value="1">1학기</option>
+			<option value="2">2학기</option>
+		</select><br>
+		
 		<label>졸업예정일</label>
+		<input type="date" id="graduationDate" name="graduationDate"><br>
+		
+		<input type="submit" value="등록">
 	</form>
+	
+	<c:if test="${not empty error}">
+	    <script>
+	        alert('${error}');
+	    </script>
+	</c:if>
 	
 </body>
 </html>

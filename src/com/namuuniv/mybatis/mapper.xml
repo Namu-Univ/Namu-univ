@@ -26,7 +26,7 @@
 	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
 		INSERT INTO PROFESSOR (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
 		                     , TEL, HIRE_DATE, DEPT_ID)
-		VALUES (PROFESSOR_SEQ.NEXTVAL, #{name}, #{birthDate}, #{gender}, #{address}
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
 		      , #{tel}, #{hireDate}, #{deptId})
 	</insert>
 	
@@ -49,13 +49,9 @@
 		SELECT PROFESSOR_SEQ.NEXTVAL FROM DUAL	
 	</select>
 	
-	<!-- 학과 id 존재 여부 -->
-	<select id="validDeptId" resultType="boolean">
-	<![CDATA[
-		SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
-		FROM DEPARTMENT
-		WHERE ID = #{deptId}
-	]]>
+	<!-- 학과 정보 조회 -->
+	<select id="selectAllDepts" resultType="com.namuuniv.vo.DepartmentVO">
+		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
 	</select>
 	
 </mapper>

@@ -1,11 +1,11 @@
 package com.namuuniv.dao;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.namuuniv.mybatis.DBService;
+import com.namuuniv.vo.DepartmentVO;
 import com.namuuniv.vo.ProfessorVO;
 import com.namuuniv.vo.StaffVO;
 import com.namuuniv.vo.StudentVO;
@@ -24,7 +24,7 @@ public class StaffDAO {
 			if (result > 0) {
 				UsersVO user = new UsersVO();
 				user.setId(staffId);
-				user.setPassword(formatDate(vo.getBirthDate()));
+				user.setPassword(vo.getBirthDate());
 				user.setRole("staff");
 				ss.insert("NAMU.insertUsers", user);
 				ss.commit();
@@ -41,21 +41,19 @@ public class StaffDAO {
 
 	// 학생 추가
 	public static int insertStudent(StudentVO vo) {
-		SqlSession ss = DBService.getFactory().openSession();
+		SqlSession ss = DBService.getFactory().openSession(false);
 		try {
-			if (!validDeptId(vo.getDeptId())) {
-				throw new IllegalArgumentException("해당 학과가 존재하지 않습니다.");
-			}
 			int studentId = ss.selectOne("NAMU.nextStudentId");
 			vo.setId(studentId);
 			int result = ss.insert("NAMU.insertStudent", vo);
 			if (result > 0) {
 				UsersVO user = new UsersVO();
-				user.setId(studentId);
-				user.setPassword(formatDate(vo.getBirthDate()));
+				user.setId(vo.getId());
+				user.setPassword(vo.getBirthDate());
 				user.setRole("student");
-				ss.insert("NAMU.insertUsers");
+				ss.insert("NAMU.insertUsers", user);
 				ss.commit();
+				return result;
 			}
 		} catch (Exception e) {
 			ss.rollback();
@@ -68,28 +66,33 @@ public class StaffDAO {
 
 	// 교수 추가
 	public static int insertProfessor(ProfessorVO vo) {
-		try (SqlSession ss = DBService.getFactory().openSession(true)) {
-			if (validDeptId(vo.getDeptId())) {
-				return ss.insert("NAMU.insertProfessor", vo);
-			} else {
-				throw new IllegalArgumentException("해당 학과가 존재하지 않습니다.");
+		SqlSession ss = DBService.getFactory().openSession();
+		try {
+			int professorId = ss.selectOne("NAMU.nextProfessorId");
+			vo.setId(professorId);
+			int result = ss.insert("NAMU.insertProfessor", vo);
+			if (result > 0) {
+				UsersVO user = new UsersVO();
+				user.setId(professorId);
+				user.setPassword(vo.getBirthDate());
+				user.setRole("professor");
+				ss.insert("NAMU.insertUsers", user);
+				ss.commit();
+				return result;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			ss.rollback();
+		} finally {
+			ss.close();
 		}
 		return -1;
 	}
-	
-	// 생년월일 YYYYMMDD형식 문자열로 변환
-	private static String formatDate(java.util.Date birthDate) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		return sdf.format(birthDate);
-	}
-	
-	// 학과 id가 존재하는지 확인
-	public static boolean validDeptId(int deptId) {
-		SqlSession ss = DBService.getFactory().openSession();
-		return ss.selectOne("NAMU.validDeptId", deptId);
+
+	// 학과 조회
+	public static List<DepartmentVO> getAllDepts() {
+		try (SqlSession ss = DBService.getFactory().openSession()) {
+			return ss.selectList("NAMU.selectAllDepts");
+		}
 	}
 	
 }

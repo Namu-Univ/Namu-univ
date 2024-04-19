@@ -7,7 +7,7 @@ public class StudentVO {
 	private int id;
 	private int deptId;
 	private String name;
-	private Date birthDate;
+	private String birthDate;
 	private String gender;
 	private String address;
 	private String tel;
@@ -34,10 +34,10 @@ public class StudentVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {

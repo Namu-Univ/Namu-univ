@@ -23,16 +23,14 @@ public class AddStaffController extends HttpServlet {
 		StaffVO staff = new StaffVO();
 		
 		// 파라미터 값을 문자열로 받아와서 sql.Date 객체로 변환
-		String birthDateStr = request.getParameter("birthDate");
 		String hireDateStr = request.getParameter("hireDate");
-		Date birthDateSql = Date.valueOf(birthDateStr);
 		Date hireDateSql = null;
 		if (hireDateStr != null && !hireDateStr.isEmpty()) {
 			hireDateSql = Date.valueOf(hireDateStr);
 		}
 		
 		staff.setName(request.getParameter("name"));
-		staff.setBirthDate(birthDateSql);
+		staff.setBirthDate(request.getParameter("birthDate"));
 		staff.setGender(request.getParameter("gender"));
 		staff.setAddress(request.getParameter("address"));
 		staff.setTel(request.getParameter("tel"));
