@@ -2,10 +2,16 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="NAMU">
+<mapper namespace="namu">
 	<select id="login" resultType="com.namuuniv.vo.UsersVO">
-		SELECT * 
+		SELECT ID, PASSWORD, ROLE
 		FROM USERS
-		WHERE ID = #{id} AND PASSWORD = #{password};
+		WHERE ID = #{id} AND PASSWORD = #{password}
 	</select>
+	<select id="role" resultType="UsersVO">
+		SELECT ROLE
+		FROM USERS
+		WHERE ID = #{id}
+	</select>
+	
 </mapper>

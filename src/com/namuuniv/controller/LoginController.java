@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.namuuniv.model.dao.LoginDAO;
 import com.namuuniv.vo.UsersVO;
 
-@WebServlet("/LoginController")
+@WebServlet("/login")
 public class LoginController extends HttpServlet  {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,36 +21,51 @@ public class LoginController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(">> login 요청 처리");
-		
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = (String)request.getParameter("id");
 		String pw = (String)request.getParameter("password");
 		
-		System.out.println("id : " + id);
-		System.out.println("pw : " + pw);
+		//System.out.println("id : " + id);
+		//System.out.println("pw : " + pw);
 		
 		HttpSession session = request.getSession();
 		
-		List<UsersVO> login = LoginDAO.getLogin(id, pw);
+		List<UsersVO> loginChk = LoginDAO.getLogin(id, pw);
+		List<UsersVO> role = LoginDAO.getRole(id);
+		//System.out.println(" loginChk : " + loginChk);
+
+		UsersVO user = role.get(0);
+		String userRole = user.getRole();
+		//System.out.println("role: " + userRole);
 		
-		// 세션 생성
-		if (!login.equals(null)) {
+		if (!loginChk.isEmpty()) {
 			session.setAttribute("id", id);
-			System.out.println("저장된 id : " + id);
-			request.getRequestDispatcher("mypage.jsp").forward(request, response);
+			session.setAttribute("role", userRole);
+			//System.out.println("저장된 id : " + id);
+			
+			// 학생 내정보로 이동
+			if(userRole.equals("student")) {				
+				request.getRequestDispatcher("studentMypage.jsp").forward(request, response);
+			} else if(userRole.equals("professor")) {
+				request.getRequestDispatcher("professorMypage.jsp").forward(request, response);
+			} else if(userRole.equals("staff")) {
+				request.getRequestDispatcher("staffMypage.jsp").forward(request, response);
+			} else {
+				String errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
+				request.setAttribute("errorMsg", errorMsg);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
 		}
 		else {
+			String errorMsg = "아이디 또는 비밀번호를 잘못 입력했습니다.";
+			request.setAttribute("errorMsg", errorMsg);
 			System.out.println("로그인 실패");
-			response.sendRedirect("login.jsp");
+
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-
-		request.setAttribute("id", id);
-
-		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
+		doGet(request, response);
 	}
 }
