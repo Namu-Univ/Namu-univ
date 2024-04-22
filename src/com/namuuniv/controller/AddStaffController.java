@@ -19,6 +19,13 @@ public class AddStaffController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("addStaff doGet()");
+		doPost(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("addStaff doPost()");
+		request.setCharacterEncoding("UTF-8");
 		
 		StaffVO staff = new StaffVO();
 		
@@ -39,18 +46,11 @@ public class AddStaffController extends HttpServlet {
 		
 		int result = StaffDAO.insertStaff(staff);
 		if (result > 0) {
-			response.sendRedirect("addStaff.jsp");
+			request.setAttribute("result", "success");
 		} else {
-			request.setAttribute("error", "등록에 실패했습니다.");
-			request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+			request.setAttribute("result", "fail");
 		}
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("addStaff doPost()");
-		request.setCharacterEncoding("UTF-8");
-		doGet(request, response);
+		request.getRequestDispatcher("addStaff.jsp").forward(request, response);
 	}
 
 }

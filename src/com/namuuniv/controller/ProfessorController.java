@@ -2,6 +2,7 @@ package com.namuuniv.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.namuuniv.dao.StaffDAO;
+import com.namuuniv.vo.DepartmentVO;
 import com.namuuniv.vo.ProfessorVO;
 
 @WebServlet("/addProfessor")
@@ -18,7 +20,10 @@ public class ProfessorController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
+		List<DepartmentVO> departments = StaffDAO.getAllDepts();
+		request.setAttribute("departments", departments);
+		request.getRequestDispatcher("addProfessor.jsp").forward(request, response);
 	}
 	
 	@Override
@@ -42,11 +47,11 @@ public class ProfessorController extends HttpServlet{
 		
 		int result = StaffDAO.insertProfessor(professor);
 		if (result > 0) {
-			response.sendRedirect("addProfessor.jsp");
+			request.setAttribute("result", "success");
 		} else {
-			request.setAttribute("error", "등록에 실패했습니다.");
-			request.getRequestDispatcher("addProfessor.jsp").forward(request, response);
+			request.setAttribute("result", "fail");
 		}
+		request.getRequestDispatcher("addProfessor.jsp").forward(request, response);
 		
 	}
 }

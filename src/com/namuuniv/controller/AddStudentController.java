@@ -53,11 +53,11 @@ public class AddStudentController extends HttpServlet{
 		
 		int result = StaffDAO.insertStudent(student);
 		if (result > 0) {
-			response.sendRedirect("addStudent.jsp");
+			request.setAttribute("result", "success");
 		} else {
-			request.setAttribute("error", "등록에 실패했습니다.");
-			request.getRequestDispatcher("addStudent.jsp").forward(request, response);
+			request.setAttribute("result", "fail");
 		}
+		request.getRequestDispatcher("addStaff.jsp").forward(request, response);
 		
 	}
 }
