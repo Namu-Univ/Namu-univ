@@ -32,33 +32,43 @@ public class LoginController extends HttpServlet  {
 		List<UsersVO> loginChk = LoginDAO.getLogin(id, pw);
 		List<UsersVO> role = LoginDAO.getRole(id);
 		//System.out.println(" loginChk : " + loginChk);
-
-		UsersVO user = role.get(0);
-		String userRole = user.getRole();
-		//System.out.println("role: " + userRole);
 		
-		if (!loginChk.isEmpty()) {
-			session.setAttribute("id", id);
-			session.setAttribute("role", userRole);
-			//System.out.println("저장된 id : " + id);
+		String errorMsg = "";
+		String userRole = "";
+		UsersVO user;
+		try {
+			//System.out.println("role: " + userRole);
 			
-			// 학생 내정보로 이동
-			if(userRole.equals("student")) {				
-				request.getRequestDispatcher("studentMypage.jsp").forward(request, response);
-			} else if(userRole.equals("professor")) {
-				request.getRequestDispatcher("professorMypage.jsp").forward(request, response);
-			} else if(userRole.equals("staff")) {
-				request.getRequestDispatcher("staffMypage.jsp").forward(request, response);
-			} else {
-				String errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
+			if (!loginChk.isEmpty()) {
+				user = role.get(0);
+				userRole = user.getRole();
+				session.setAttribute("id", id);
+				session.setAttribute("role", userRole);
+				//System.out.println("저장된 id : " + id);
+				
+				// 학생 내정보로 이동
+				if(userRole.equals("student")) {				
+					request.getRequestDispatcher("studentMypage.jsp").forward(request, response);
+				} else if(userRole.equals("professor")) {
+					request.getRequestDispatcher("professorMypage.jsp").forward(request, response);
+				} else if(userRole.equals("staff")) {
+					request.getRequestDispatcher("staffMypage.jsp").forward(request, response);
+				} else {
+					errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
+					request.setAttribute("errorMsg", errorMsg);
+					request.getRequestDispatcher("login.jsp").forward(request, response);
+				}
+			}
+			else {
+				errorMsg = "아이디 또는 비밀번호를 다시 입력바랍니다.";
 				request.setAttribute("errorMsg", errorMsg);
+				System.out.println("로그인 실패");
+				
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		}
-		else {
-			String errorMsg = "아이디 또는 비밀번호를 잘못 입력했습니다.";
+		} catch (IndexOutOfBoundsException i) {
+			errorMsg = "아이디 또는 비밀번호를 입력하세요.";
 			request.setAttribute("errorMsg", errorMsg);
-			System.out.println("로그인 실패");
 
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}

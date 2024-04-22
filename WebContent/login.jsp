@@ -16,25 +16,23 @@
 
 </head>
 <body>
-	<h3>로그인 페이지</h3>
 	<div id="loginForm">
+		<div id="logo">
+			<img src="css/img/namu_logo.png" alt="namuLogo"/>
+			<p>나무대학교</p>
+		</div>
 		<form action="login" method="post">
-		<div class="txt">
 	    	<input type="text" id="id" placeholder="아이디" name="id">
-		</div>
-		<div class="txt">
 		    <input type="password" id="password" placeholder="비밀번호" name="password">
-		</div>
-		  
-		  <!-- 로그인 실패 시 처리 -->
-		  <% 
-		  String errorMsg = (String)request.getAttribute("errorMsg");
-		  if(errorMsg != null) { 
-		  %>
-		  <div style="color:red;"><%=errorMsg %></div>
-		 <% } %>
-		
-		  <button type="submit" onclick="login_btn(this.form)">로그인</button>
+
+			  <button type="submit" onclick="login_btn(this.form)">로그인</button>
+			  <!-- 로그인 실패 시 처리 -->
+			  <% 
+			  String errorMsg = (String)request.getAttribute("errorMsg");
+			  if(errorMsg != null) { 
+			  %>
+			  <div id="errorMsg" style="color:red;"><%=errorMsg %></div>
+			 <% } %>
 		</form>
 	</div>
 </body>
