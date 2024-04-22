@@ -2,6 +2,41 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="NAMU">
+<mapper namespace="namu">
 	
+	<!-- 내정보 조회 (학생) -->
+	<select id="stulist"  resultType="com.namuuniv.vo.StudentVO">
+		SELECT * 
+		FROM STUDENT
+		ORDER BY ID
+	</select>
+	
+	<!-- 내정보 조회 (교수) -->
+	<select id="prolist"  resultType="com.namuuniv.vo.ProfessorVO">
+		SELECT *
+		FROM PROFESSOR
+		ORDER BY ID
+	</select>
+	
+	<!-- 내정보 조회 (교직원) -->
+	<select id="stafflist"  resultType="com.namuuniv.vo.StaffVO">
+		SELECT *
+		FROM STAFF
+		ORDER BY ID
+	</select>
+
+	<!-- 내정보 수정 (학생) -->
+	<update id="updateStudent" parameterType="com.namuuniv.vo.StudentVO">
+        UPDATE STUDENT
+        SET NAME = #{name},
+            BIRTH_DATE = #{birthDate},
+            GENDER = #{gender},
+            ADDRESS = #{address},
+            TEL = #{tel},
+            GRADE = #{grade},
+            SEMESTER = #{semester},
+            ENTRANCE_DATE = #{entranceDate},
+            GRADUATION_DATE = #{graduationDate}
+        WHERE ID = #{id}
+    </update>
 </mapper>

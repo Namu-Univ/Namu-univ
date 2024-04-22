@@ -4,19 +4,18 @@ import java.sql.Date;
 
 public class StudentVO {
 
-	private int id;
-	private int deptId;
-	private String password;
-	private String name;
-	private Date birthDate;
-	private String gender;
-	private String address;
-	private String tel;
-	private int grade;
-	private int semester;
-	private Date entranceDate;
-	private Date graduationDate;
-	
+	  private int id;
+	    private int deptId;
+	    private String password;
+	    private String name;
+	    private String birthDate; // 날짜를 String으로 변경
+	    private String gender;
+	    private String address;
+	    private String tel;
+	    private int grade;
+	    private int semester;
+	    private Date entranceDate; 
+	    private Date graduationDate; 
 	public int getId() {
 		return id;
 	}
@@ -41,10 +40,10 @@ public class StudentVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {
