@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="NAMU">
+<mapper namespace="namu">
 
 	<!-- 교직원 추가 기능 -->
 	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
