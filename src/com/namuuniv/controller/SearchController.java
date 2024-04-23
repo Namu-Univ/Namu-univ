@@ -21,7 +21,7 @@ import com.namuuniv.vo.StaffVO;
 import com.namuuniv.vo.StudentVO;
 
 @WebServlet("/controller")
-public class FrontController extends HttpServlet {
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
