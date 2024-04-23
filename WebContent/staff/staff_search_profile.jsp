@@ -21,9 +21,9 @@
 		//2-1.sqlSession 객체 생성
 		SqlSession ss = DBService.getFactory().openSession();
 		//2-2. id 값 전달해서 DB SELECT
-		ss.selectOne("NAMU.staffOne", id);
+		ss.selectOne("namu.staffOne", id);
 		
-		StaffVO vo = ss.selectOne("NAMU.staffOne", id);
+		StaffVO vo = ss.selectOne("namu.staffOne", id);
 		ss.close();
 		
 		System.out.println(":: vo: " + vo);
@@ -40,7 +40,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 상세 정보</title>
-<link href="css/nav.css" rel="stylesheet" type="text/css">
+<link href="../css/frame.css" rel="stylesheet" type="text/css">
 <style>
 	.profile {
 		border-style: 1px solid black;
@@ -59,7 +59,7 @@
 			<a href="#">로그인</a>
 		</div>
 		<div class="nav">
-			<div class="logo"><img src="img/tree.png">나무대학교</div>
+			<div class="logo"><img src="../img/tree.png">나무대학교</div>
 			  <div class="topnav">
 			  <a href="#">내정보</a>
 			  <a href="staff-student_search.jsp">조회</a>

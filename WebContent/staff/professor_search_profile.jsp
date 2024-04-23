@@ -39,8 +39,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 상세 정보</title>
-<link href="css/nav.css" rel="stylesheet" type="text/css">
-<link href="css/table.css" rel="stylesheet" type="text/css">
+<link href="../css/frame.css" rel="stylesheet" type="text/css">
+<link href="../css/table.css" rel="stylesheet" type="text/css">
 <script>
 	function modify_go(){
 		location.href="professor_profile_update.jsp"; //수정화면으로 이동
@@ -54,7 +54,7 @@
 			<a href="#">로그인</a>
 		</div>
 		<div class="nav">
-			<div class="logo"><img src="img/tree.png">나무대학교</div>
+			<div class="logo"><img src="../img/tree.png">나무대학교</div>
 			  <div class="topnav">
 			  <a href="#">내정보</a>
 			  <a href="staff-student_search.jsp">조회</a>
