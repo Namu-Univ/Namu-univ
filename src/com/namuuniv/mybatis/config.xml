@@ -10,7 +10,9 @@
 	</settings>
 	
 	<typeAliases>
-		
+		<typeAlias alias="StudentVO" type="com.namuuniv.vo.StudentVO"/>
+		<typeAlias alias="ProfessorVO" type="com.namuuniv.vo.ProfessorVO"/>
+		<typeAlias alias="StaffVO" type="com.namuuniv.vo.StaffVO"/>
 	</typeAliases>
 
   <environments default="development">

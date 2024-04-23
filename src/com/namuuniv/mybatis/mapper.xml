@@ -2,6 +2,56 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="NAMU">
+<mapper namespace="namu">
+
+	<!-- 교직원 추가 기능 -->
+	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
+		INSERT INTO STAFF (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                 , TEL, HIRE_DATE, DEPT)
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{dept})
+	</insert>
+	
+	<!-- 학생 추가 기능 -->
+	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
+		INSERT INTO STUDENT (ID, DEPT_ID, NAME, BIRTH_DATE, GENDER
+		                   , ADDRESS, TEL, GRADE, SEMESTER, ENTRANCE_DATE
+		                   , GRADUATION_DATE)
+		VALUES (#{id}, #{deptId}, #{name}, #{birthDate}, #{gender}
+		      , #{address}, #{tel}, #{grade}, #{semester}, #{entranceDate}
+		      , #{graduationDate})		
+	</insert>
+	
+	<!-- 교수 추가 기능 -->
+	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+		INSERT INTO PROFESSOR (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                     , TEL, HIRE_DATE, DEPT_ID)
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{deptId})
+	</insert>
+	
+	<!-- 사용자 추가 기능 -->
+	<insert id="insertUsers" parameterType="com.namuuniv.vo.UsersVO">
+		INSERT INTO USERS (ID, PASSWORD, ROLE)
+		VALUES(#{id}, #{password}, #{role})
+	</insert>
+	
+	<!-- id 채번 값 -->
+	<select id="nextStaffId" resultType="int">
+		SELECT STAFF_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextStudentId" resultType="int">
+		SELECT STUDENT_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextProfessorId" resultType="int">
+		SELECT PROFESSOR_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<!-- 학과 정보 조회 -->
+	<select id="selectAllDepts" resultType="com.namuuniv.vo.DepartmentVO">
+		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
+	</select>
 	
 </mapper>

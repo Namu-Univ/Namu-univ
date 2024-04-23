@@ -6,9 +6,8 @@ public class StudentVO {
 
 	private int id;
 	private int deptId;
-	private String password;
 	private String name;
-	private Date birthDate;
+	private String birthDate;
 	private String gender;
 	private String address;
 	private String tel;
@@ -29,22 +28,16 @@ public class StudentVO {
 	public void setDeptId(int deptId) {
 		this.deptId = deptId;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {
@@ -92,10 +85,9 @@ public class StudentVO {
 	
 	@Override
 	public String toString() {
-		return "StudentVO [id=" + id + ", deptId=" + deptId + ", password=" + password + ", name=" + name
-				+ ", birthDate=" + birthDate + ", gender=" + gender + ", address=" + address + ", tel=" + tel
-				+ ", grade=" + grade + ", semester=" + semester + ", entranceDate=" + entranceDate + ", graduationDate="
-				+ graduationDate + "]";
+		return "StudentVO [id=" + id + ", deptId=" + deptId + ", name=" + name + ", birthDate=" + birthDate
+				+ ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", grade=" + grade + ", semester="
+				+ semester + ", entranceDate=" + entranceDate + ", graduationDate=" + graduationDate + "]";
 	}
 	
 }

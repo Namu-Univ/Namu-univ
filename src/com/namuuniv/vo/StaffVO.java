@@ -5,9 +5,8 @@ import java.sql.Date;
 public class StaffVO {
 	
 	private int id;
-	private String password;
 	private String name;
-	private Date birthDate;
+	private String birthDate;
 	private String gender;
 	private String address;
 	private String tel;
@@ -20,22 +19,16 @@ public class StaffVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {
@@ -71,9 +64,8 @@ public class StaffVO {
 	
 	@Override
 	public String toString() {
-		return "StaffVO [id=" + id + ", password=" + password + ", name=" + name + ", birthDate=" + birthDate
-				+ ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", hireDate=" + hireDate + ", dept="
-				+ dept + "]";
+		return "StaffVO [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", address="
+				+ address + ", tel=" + tel + ", hireDate=" + hireDate + ", dept=" + dept + "]";
 	}
 
 }

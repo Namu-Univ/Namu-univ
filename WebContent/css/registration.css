@@ -1,0 +1,63 @@
+	body {
+		background-color: #ffffff;
+		margin: 0;
+		padding: 20px;
+	}
+	
+	.container {
+		background: #ffffff;
+		padding: 20px;
+		width: 80%;
+		max-width: 600px;
+		margin: auto;
+	}
+	
+	table {
+		width: 60%;
+		border-collapse: collapse;
+	}
+	
+	td {
+		padding: 10px;
+		text-align: left;
+	}
+	
+	input[type="text"],
+	input[type="date"],
+	select {
+		padding: 5px;
+		margin-top: 5px;
+		width: 100%;
+		padding: 8px;
+	}
+	
+	.radio {
+		margin-right: 20px;
+		display: inline-block;
+	}
+	
+	#male, #female {
+		margin-right: 10px;
+	}
+	
+	.button {
+		text-align: center;
+	}
+	
+	input[type="submit"] {
+		background-color: #e0e0e0;
+		border: none;
+		padding: 5px 10px;
+		margin-top: 20px;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: bold;
+	}
+	
+	input[type="submit"]:hover {
+		background-color: #b4b4b4;
+	}
+	
+	label {
+		font-weight: bold;
+	}
