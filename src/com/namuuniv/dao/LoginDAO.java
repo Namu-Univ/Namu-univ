@@ -1,4 +1,4 @@
-package com.namuuniv.model.dao;
+package com.namuuniv.dao;
 
 import java.util.HashMap;
 import java.util.List;

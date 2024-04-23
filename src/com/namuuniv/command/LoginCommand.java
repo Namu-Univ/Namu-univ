@@ -1,4 +1,4 @@
-package com.namuuniv.model.command;
+package com.namuuniv.command;
 
 import java.io.IOException;
 
