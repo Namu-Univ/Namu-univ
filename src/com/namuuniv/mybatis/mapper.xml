@@ -5,6 +5,7 @@
 <mapper namespace="namu">
 
 	<!-- 로그인 -->
+	<!-- 아이디, 비밀번호 조회 -->
 	<select id="login" resultType="com.namuuniv.vo.UsersVO">
 		SELECT ID, PASSWORD, ROLE
 		FROM USERS
@@ -12,7 +13,7 @@
 	</select>
 	
 	<!-- role 조회 -->
-	<select id="role" resultType="UsersVO">
+	<select id="role" resultType="com.namuuniv.vo.UsersVO">
 		SELECT ROLE
 		FROM USERS
 		WHERE ID = #{id}
@@ -103,7 +104,7 @@
 	  	WHERE ID = #{id}
   	</update>
   
-  	<!-- 교수 수정 -->
+  <!-- 교수 수정 -->
 	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
 	  	UPDATE PROFESSOR
 	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}
@@ -115,7 +116,7 @@
 	  	UPDATE STAFF
 	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}, DEPT = #{dept}
 	  	WHERE ID = #{id}
-  	</update>
+  </update>
   
 	<!-- 학생/교수/교직원 추가 -->
 	<!-- 교직원 추가 기능 -->
@@ -167,5 +168,5 @@
 	<select id="selectAllDepts" resultType="com.namuuniv.vo.DepartmentVO">
 		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
 	</select>
-
+	
 </mapper>
