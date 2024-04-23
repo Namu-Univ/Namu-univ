@@ -3,47 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-9.0.87">
-		<attributes>
-			<attribute name="owner.project.facets" value="#system#;jst.web"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/annotations-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina-ant.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina-ha.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina-ssi.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina-storeconfig.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/catalina-tribes.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/ecj-4.20.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/el-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/jasper.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/jasper-el.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/jaspic-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-api.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-coyote.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-dbcp.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-cs.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-de.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-es.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-fr.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-ja.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-ko.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-pt-BR.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-ru.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-i18n-zh-CN.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-jdbc.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-jni.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-util.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-util-scan.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/tomcat-websocket.jar"/>
-	<classpathentry kind="lib" path="D:/Namu/apache-tomcat-9.0.86/lib/websocket-api.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-19">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

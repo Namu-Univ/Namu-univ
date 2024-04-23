@@ -1,6 +1,7 @@
 package com.namuuniv.vo;
 
 public class UsersVO {
+
 	private int id;
 	private String password;
 	private String role;
@@ -26,6 +27,7 @@ public class UsersVO {
 	
 	@Override
 	public String toString() {
-		return "UsersVO [id=" + id + ", password=" + password + ", role=" + role + "]";
+		return "UserVO [id=" + id + ", password=" + password + ", role=" + role + "]";
 	}
+
 }
