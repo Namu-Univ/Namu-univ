@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.namuuniv.mybatis.DBService;
 import com.namuuniv.vo.ProfessorVO;
 import com.namuuniv.vo.StaffVO;
+import com.namuuniv.vo.StudentVO;
 
 public class StaffDAO {
 
@@ -29,5 +30,22 @@ public class StaffDAO {
 		}
 
 		return null;
+	}
+
+	// 교직원 정보 수정
+	public static boolean updateStaff(StaffVO staff) {
+		try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+			int count = sqlSession.update("namu.updateStaff", staff);
+			if (count > 0) { // 0 이상일시 DB에 커밋
+				sqlSession.commit();
+				return true;
+			} else {
+				sqlSession.rollback();
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

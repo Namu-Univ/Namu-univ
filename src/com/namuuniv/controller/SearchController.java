@@ -69,16 +69,9 @@ public class FrontController extends HttpServlet {
 			// 2. 응답페이지(staff_check.jsp)에 전달
 			request.setAttribute("list", staffList);
 
-			// 응답이 커밋되지 않았는지 확인하여 forward 수행
-
 			// 3. 페이지 전환 - 응답할 페이지(staff_check.jsp)로 전환(포워딩)
 			request.getRequestDispatcher("staff_check.jsp").forward(request, response);
 
-		}
-		// 학생 정보 수정 폼으로 이동
-		if ("editStudentForm".equals(type)) {
-		    // editStudent.jsp로 포워딩
-		    request.getRequestDispatcher("/editStudent.jsp").forward(request, response);
 		}
 
 	}
@@ -86,54 +79,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String type = request.getParameter("type");
-		// 학생 정보 수정 처리
-		if ("editStudent".equals(type)) {
-			int id = Integer.parseInt(request.getParameter("id"));
-		    String name = request.getParameter("name");
-		    String birthDate = request.getParameter("birthDate");
-		    String gender = request.getParameter("gender");
-		    String address = request.getParameter("address");
-		    String tel = request.getParameter("tel");
-		    int grade = Integer.parseInt(request.getParameter("grade"));
-		    int semester = Integer.parseInt(request.getParameter("semester"));
-		    String entranceDateStr = request.getParameter("entranceDate");
-		    String graduationDateStr = request.getParameter("graduationDate");
 
-		    // Date 형식으로 변환
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		    Date entranceDate = null;
-		    Date graduationDate = null;
-		    try {
-		        entranceDate = new Date(dateFormat.parse(entranceDateStr).getTime());
-		        graduationDate = new Date(dateFormat.parse(graduationDateStr).getTime());
-		    } catch (ParseException e) {
-		        e.printStackTrace();
-		        // 날짜 형식이 잘못되었을 경우 처리
-		    }
-
-		    // 수정할 학생 정보 생성
-		    StudentVO updatedStudent = new StudentVO();
-		    updatedStudent.setId(id);
-		    updatedStudent.setName(name);
-		    updatedStudent.setBirthDate(birthDate);
-		    updatedStudent.setGender(gender);
-		    updatedStudent.setAddress(address);
-		    updatedStudent.setTel(tel);
-		    updatedStudent.setGrade(grade);
-		    updatedStudent.setSemester(semester);
-		    updatedStudent.setEntranceDate(entranceDate);
-		    updatedStudent.setGraduationDate(graduationDate);
-
-		    // 학생 정보 업데이트
-		    boolean success = StudentDAO.updateStudent(updatedStudent);
-
-		    if (success) {
-		        List<StudentVO> stuList = StudentDAO.getStuInfo();
-		        request.setAttribute("list", stuList);
-		        request.getRequestDispatcher("stu_check.jsp").forward(request, response);
-		    } else {
-		    }
-		}
+		doGet(request, response);
 	}
 }

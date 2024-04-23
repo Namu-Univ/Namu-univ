@@ -7,11 +7,11 @@ public class StaffVO {
 	private int id;
 	private String password;
 	private String name;
-	private Date birthDate;
+	private String birthDate; // Date -> String 으로 수정
 	private String gender;
 	private String address;
 	private String tel;
-	private Date hireDate;
+	private String hireDate;
 	private String dept;
 	
 	public int getId() {
@@ -32,10 +32,10 @@ public class StaffVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {
@@ -56,10 +56,10 @@ public class StaffVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public Date getHireDate() {
+	public String getHireDate() {
 		return hireDate;
 	}
-	public void setHireDate(Date hireDate) {
+	public void setHireDate(String hireDate) {
 		this.hireDate = hireDate;
 	}
 	public String getDept() {

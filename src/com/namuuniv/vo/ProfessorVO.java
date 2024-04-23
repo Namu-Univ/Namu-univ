@@ -7,7 +7,7 @@ public class ProfessorVO {
 	private int id;
 	private String password;
 	private String name;
-	private Date birthDate;
+	private String birthDate; // Date -> String 으로 수정
 	private String gender;
 	private String address;
 	private String tel;
@@ -32,10 +32,10 @@ public class ProfessorVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getGender() {

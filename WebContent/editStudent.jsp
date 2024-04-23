@@ -1,46 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>학생 정보 수정</title>
+    <link href="css/frame.css" rel="stylesheet" type="text/css">
+    <style>
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
-<h1>학생 정보 수정</h1>
-<form action="editStudent" method="post">
-    <input type="hidden" name="id" value="${student.id}">
-    <!-- ID는 readonly로 보이도록 숨겨둠 -->
+    <div>
+        <div class="top">
+            <a href="#">로그인</a>
+        </div>
+        <div class="nav">
+            <div class="logo"><img src="img/tree.png">나무대학교</div>
+            <div class="topnav">
+                <a href="#">내정보</a>
+                <a href="staff-student_search.jsp">조회</a>
+                <a href="#">등록/관리</a>
+                <a href="#">공지사항</a> 
+             </div>
+        </div>
+        <div class="mid">
+            <!-- Side navigation -->
+            <div class="sidenav">
+              <a href="#">내정보</a>
+              <a href="#">정보수정</a>
+            </div>
+            
+            <div class="maintop">학생 정보 수정</div>
+            
+            <!-- Page content -->
+            <div class="main">
+                <form action="editStudent" method="post">
+                    <% String reqId = request.getParameter("id"); %>
+                    <input type="hidden" name="id" value="<%=reqId%>">
+                    <!-- ID는 readonly로 보이도록 숨겨둠 -->
 
-    <label for="name">이름:</label>
-    <input type="text" id="name" name="name" value="${student.name}"><br>
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" value="${student.name}" class="input-field"><br>
 
-    <label for="birthDate">생년월일:</label>
-    <input type="text" id="birthDate" name="birthDate" value="${student.birthDate}"><br>
+                    <label for="birthDate">생년월일:</label>
+                    <input type="text" id="birthDate" name="birthDate" value="${student.birthDate}" class="input-field"><br>
 
-    <label for="gender">성별:</label>
-    <input type="text" id="gender" name="gender" value="${student.gender}"><br>
+                    <label for="address">주소:</label>
+                    <input type="text" id="address" name="address" value="${student.address}" class="input-field"><br>
 
-    <label for="address">주소:</label>
-    <input type="text" id="address" name="address" value="${student.address}"><br>
+                    <label for="tel">전화번호:</label>
+                    <input type="text" id="tel" name="tel" value="${student.tel}" class="input-field"><br>
 
-    <label for="tel">전화번호:</label>
-    <input type="text" id="tel" name="tel" value="${student.tel}"><br>
-
-    <label for="grade">학년:</label>
-    <input type="text" id="grade" name="grade" value="${student.grade}"><br>
-
-    <label for="semester">학기:</label>
-    <input type="text" id="semester" name="semester" value="${student.semester}"><br>
-
-    <label for="entranceDate">입학일:</label>
-    <input type="text" id="entranceDate" name="entranceDate" value="${student.entranceDate}"><br>
-
-    <label for="graduationDate">졸업일:</label>
-    <input type="text" id="graduationDate" name="graduationDate" value="${student.graduationDate}"><br>
-
-    <input type="submit" value="수정">
-</form>
+                    <input type="submit" value="수정">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

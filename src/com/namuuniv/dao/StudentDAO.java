@@ -32,20 +32,20 @@ public class StudentDAO {
 		return null;
 	}
 
-	 // 학생 정보 수정
-    public static boolean updateStudent(StudentVO student) {
-        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
-            int count = sqlSession.update("namu.updateStudent", student);
-            if (count > 0) { // 0 이상일시 DB에 커밋
-                sqlSession.commit();
-                return true;
-            } else {
-                sqlSession.rollback();
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	// 학생 정보 수정
+	public static boolean updateStudent(StudentVO student) {
+		try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+			int count = sqlSession.update("namu.updateStudent", student);
+			if (count > 0) { // 0 이상일시 DB에 커밋
+				sqlSession.commit();
+				return true;
+			} else {
+				sqlSession.rollback();
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
