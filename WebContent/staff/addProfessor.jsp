@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>교수 등록</title>
-<link href="css/registration.css" rel="stylesheet">
-<link href="css/frame.css" rel="stylesheet" type="text/css">
+<link href="../css/registration.css" rel="stylesheet">
+<link href="../css/frame.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div>
@@ -16,7 +16,7 @@
 			<a href="#">로그인</a>
 		</div>
 		<div class="nav">
-			<div class="logo"><img src="img/tree.png">나무대학교</div>
+			<div class="logo"><img src="../img/tree.png">나무대학교</div>
 			  <div class="topnav">
 				  <a href="#">내정보</a>
 				  <a href="staff-student_search.jsp">조회</a>
