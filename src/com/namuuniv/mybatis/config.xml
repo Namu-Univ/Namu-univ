@@ -10,7 +10,6 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="UsersVO" type="com.namuuniv.vo.UsersVO"/>
 	</typeAliases>
 
   <environments default="development">

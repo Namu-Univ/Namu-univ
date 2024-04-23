@@ -3,15 +3,170 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="namu">
+
+	<!-- 로그인 -->
+	<!-- 아이디, 비밀번호 조회 -->
 	<select id="login" resultType="com.namuuniv.vo.UsersVO">
 		SELECT ID, PASSWORD, ROLE
 		FROM USERS
 		WHERE ID = #{id} AND PASSWORD = #{password}
 	</select>
-	<select id="role" resultType="UsersVO">
+	
+	<!-- role 조회 -->
+	<select id="role" resultType="com.namuuniv.vo.UsersVO">
 		SELECT ROLE
 		FROM USERS
 		WHERE ID = #{id}
+	</select>
+	
+	<!-- 학생/교수/교직원 조회 -->
+	<!-- 학생 조회 -->
+	<select id="studentOne" parameterType="string" resultType="com.namuuniv.vo.StudentVO">
+		SELECT S.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
+		FROM STUDENT S
+		INNER JOIN DEPARTMENT D ON S.DEPT_ID = D.ID
+		WHERE S.ID = #{ID}
+	</select>
+	
+	<!-- 교수 조회 -->	
+	<select id="professorOne" parameterType="string" resultType="com.namuuniv.vo.ProfessorVO">
+		SELECT P.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
+		FROM PROFESSOR P
+		INNER JOIN DEPARTMENT D ON P.DEPT_ID = D.ID
+		WHERE P.ID = #{ID}
+	</select>
+	
+	<!-- 교직원 조회 -->	
+	<select id="staffOne" parameterType="string" resultType="com.namuuniv.vo.StaffVO">
+		SELECT *
+		FROM STAFF
+		WHERE ID = #{ID}
+	</select>
+
+	<!-- 학생 동적 검색 -->
+	<select id="SearchStudent" parameterType="map" resultType="com.namuuniv.vo.StudentVO">
+		SELECT S.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
+		FROM STUDENT S
+		INNER JOIN DEPARTMENT D ON S.DEPT_ID = D.ID
+		<choose>
+			<when test="idx == 0"> 
+				WHERE S.NAME = #{keyword}
+			</when>
+			<when test="idx == 1"> 
+				WHERE S.ID = #{keyword}
+			</when>
+			<when test="idx == 2"> 
+				WHERE D.NAME = #{keyword}
+			</when>
+		</choose>
+	</select>
+	
+	<!-- 교수 동적 검색 -->
+	<select id="SearchProfessor" parameterType="map" resultType="com.namuuniv.vo.ProfessorVO">
+	    SELECT P.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
+	    FROM PROFESSOR P
+	    INNER JOIN DEPARTMENT D ON P.DEPT_ID = D.ID
+	    <choose>
+	        <when test="idx == 0"> 
+	            WHERE P.NAME = #{keyword}
+	        </when>
+	        <when test="idx == 1"> 
+	            WHERE P.ID = #{keyword}
+	        </when>
+	        <when test="idx == 2"> 
+	            WHERE D.NAME = #{keyword}
+	        </when>
+	    </choose>
+	</select>
+	
+	<!-- 교직원 동적 검색 -->
+	<select id="SearchStaff" parameterType="map" resultType="com.namuuniv.vo.StaffVO">
+		SELECT *
+		FROM STAFF
+		<choose>
+			<when test="idx == 0"> 
+				WHERE NAME = #{keyword}
+			</when>
+			<when test="idx == 1"> 
+				WHERE ID = #{keyword}
+			</when>
+			<when test="idx == 2"> 
+				WHERE DEPT = #{keyword}
+			</when>
+		</choose>
+	</select>
+	
+	<!-- 학생/교수/교직원 수정 -->
+	<!-- 학생 수정 -->
+	<update id="updateStudent" parameterType="com.namuuniv.vo.StudentVO">
+	  	UPDATE STUDENT
+	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}
+	  	WHERE ID = #{id}
+  	</update>
+  
+  <!-- 교수 수정 -->
+	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+	  	UPDATE PROFESSOR
+	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}
+	  	WHERE ID = #{id}
+  	</update>
+	
+	<!-- 교직원 수정 -->
+	<update id="updateStaff" parameterType="com.namuuniv.vo.StaffVO">
+	  	UPDATE STAFF
+	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}, DEPT = #{dept}
+	  	WHERE ID = #{id}
+  </update>
+  
+	<!-- 학생/교수/교직원 추가 -->
+	<!-- 교직원 추가 기능 -->
+	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
+		INSERT INTO STAFF (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                 , TEL, HIRE_DATE, DEPT)
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{dept})
+	</insert>
+	
+	<!-- 학생 추가 기능 -->
+	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
+		INSERT INTO STUDENT (ID, DEPT_ID, NAME, BIRTH_DATE, GENDER
+		                   , ADDRESS, TEL, GRADE, SEMESTER, ENTRANCE_DATE
+		                   , GRADUATION_DATE)
+		VALUES (#{id}, #{deptId}, #{name}, #{birthDate}, #{gender}
+		      , #{address}, #{tel}, #{grade}, #{semester}, #{entranceDate}
+		      , #{graduationDate})		
+	</insert>
+	
+	<!-- 교수 추가 기능 -->
+	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+		INSERT INTO PROFESSOR (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
+		                     , TEL, HIRE_DATE, DEPT_ID)
+		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
+		      , #{tel}, #{hireDate}, #{deptId})
+	</insert>
+	
+	<!-- 사용자 추가 기능 -->
+	<insert id="insertUsers" parameterType="com.namuuniv.vo.UsersVO">
+		INSERT INTO USERS (ID, PASSWORD, ROLE)
+		VALUES(#{id}, #{password}, #{role})
+	</insert>
+	
+	<!-- id 채번 값 -->
+	<select id="nextStaffId" resultType="int">
+		SELECT STAFF_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextStudentId" resultType="int">
+		SELECT STUDENT_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<select id="nextProfessorId" resultType="int">
+		SELECT PROFESSOR_SEQ.NEXTVAL FROM DUAL	
+	</select>
+	
+	<!-- 학과 정보 조회 -->
+	<select id="selectAllDepts" resultType="com.namuuniv.vo.DepartmentVO">
+		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
 	</select>
 	
 </mapper>
