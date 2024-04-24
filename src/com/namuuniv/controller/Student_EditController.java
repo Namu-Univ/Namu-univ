@@ -1,11 +1,6 @@
 package com.namuuniv.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.ProfessorDAO;
-import com.namuuniv.dao.StaffDAO;
-import com.namuuniv.dao.StudentDAO;
-import com.namuuniv.vo.ProfessorVO;
-import com.namuuniv.vo.StaffVO;
+import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.StudentVO;
 
 @WebServlet("/editStudent")
@@ -56,7 +47,7 @@ public class Student_EditController extends HttpServlet {
 		student.setTel(tel);
 
 		System.out.println(student.toString());
-		boolean editStuSuccess = StudentDAO.updateStudent(student); // StudentDAO에서 updateStudent 메서드를 정의해야 함
+		boolean editStuSuccess = SearchUpdateDAO.updateStudent(student); // StudentDAO에서 updateStudent 메서드를 정의해야 함
 		System.out.println();
 
 		if (editStuSuccess) {

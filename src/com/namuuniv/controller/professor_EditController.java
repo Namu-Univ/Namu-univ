@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.ProfessorDAO;
-import com.namuuniv.dao.StudentDAO;
+import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.ProfessorVO;
 
 @WebServlet("/editProfessor")
@@ -45,7 +44,7 @@ public class professor_EditController extends HttpServlet {
 	    professor.setTel(tel);
 	    
 		System.out.println(professor.toString());
-		boolean editProSuccess = ProfessorDAO.updateProfessor(professor);
+		boolean editProSuccess = SearchUpdateDAO.updateProfessor(professor);
 		System.out.println();
 
 		if (editProSuccess) {
