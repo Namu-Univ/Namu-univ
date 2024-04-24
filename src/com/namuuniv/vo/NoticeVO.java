@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class NoticeVO {
 	private int id;
-	private int staff_id;
+	private int staffId;
 	private String title;
 	private String content;
 	private int views;
@@ -17,10 +17,10 @@ public class NoticeVO {
 		this.id = id;
 	}
 	public int getStaff_id() {
-		return staff_id;
+		return staffId;
 	}
 	public void setStaff_id(int staff_id) {
-		this.staff_id = staff_id;
+		this.staffId = staff_id;
 	}
 	public String getTitle() {
 		return title;
@@ -49,7 +49,7 @@ public class NoticeVO {
 	
 	@Override
 	public String toString() {
-		return "NoticeVO [id=" + id + ", staff_id=" + staff_id + ", title=" + title + ", content=" + content
+		return "NoticeVO [id=" + id + ", staff_id=" + staffId + ", title=" + title + ", content=" + content
 				+ ", views=" + views + ", created=" + created + "]";
 	}
 	

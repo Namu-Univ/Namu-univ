@@ -223,4 +223,46 @@
 		WHERE ID = #{id}
 	</update>
 	
+	<!-- 공지사항 글목록, 상세보기, CRUD  -->
+	<!-- 전체 공지글 수 조회-->
+	<select id="totalNoticeCount" resultType="int">
+		SELECT COUNT(*) AS CNT FROM NOTICE
+	</select>
+	
+	<!-- 페이지에 해당하는 공지글 조회 -->
+	<select id="noticeList" parameterType="map" resultType="com.namuuniv.vo.NoticeVO">
+	<![CDATA[
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, N.*
+		      FROM (SELECT *
+		            FROM NOTICE
+		            ORDER BY ID DESC
+		           )N
+		      WHERE ROWNUM <= #{end}    
+		      )
+		WHERE R_NUM >= #{begin}
+	]]>
+	</select>
+
+	<!-- 교직원 확인 여부 -->
+	<select id="checkStaff2" parameterType="int" resultType="String">
+		SELECT ROLE FROM USERS WHERE ID = #{id}
+	</select>
+	
+	<select id="checkStaff" parameterType="int" resultType="int">
+		SELECT CASE WHEN ROLE = 'staff' THEN 1 ELSE 0 END IS_STAFF
+		FROM USERS
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 공지글 조회수 증가 -->
+	<update id="updateViews" parameterType="int">
+		UPDATE NOTICE
+		SET VIEWS = VIEWS + 1
+		WHERE ID = #{id}
+	</update>
+	
+	<!-- 공지글 1개 조회(상세보기) -->
+
+	
 </mapper>
