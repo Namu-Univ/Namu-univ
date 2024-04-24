@@ -6,6 +6,7 @@ public class StudentVO {
 
 	private int id;
 	private int deptId;
+	private String password;
 	private String name;
 	private String birthDate; // Date -> String 으로 수정
 	private String gender;
