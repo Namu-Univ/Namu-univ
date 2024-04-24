@@ -6,7 +6,7 @@ public class ProfessorVO {
 	
 	private int id;
 	private String name;
-	private String birthDate;
+	private String birthDate; // Date -> String 으로 수정
 	private String gender;
 	private String address;
 	private String tel;

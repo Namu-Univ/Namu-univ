@@ -4,6 +4,50 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="namu">
 
+
+	<!-- 내정보 조회 (학생) -->
+	<select id="stulist" resultType="com.namuuniv.vo.StudentVO">
+		SELECT *
+		FROM STUDENT
+		ORDER BY ID
+	</select>
+
+	<!-- 내정보 조회 (교수) -->
+	<select id="prolist" resultType="com.namuuniv.vo.ProfessorVO">
+		SELECT *
+		FROM PROFESSOR
+		ORDER BY
+		ID
+	</select>
+
+	<!-- 내정보 조회 (교직원) -->
+	<select id="stafflist" resultType="com.namuuniv.vo.StaffVO">
+		SELECT *
+		FROM STAFF
+		ORDER BY ID
+	</select>
+
+	<!-- 내정보 수정 (학생) -->
+	<update id="updateStudent" parameterType="com.namuuniv.vo.StudentVO">
+		UPDATE STUDENT
+		SET NAME = #{name},
+		BIRTH_DATE = #{birthDate},
+		ADDRESS = #{address},
+		TEL = #{tel}
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 내정보 수정(교직원) -->
+	<update id="updateStaff" parameterType="com.namuuniv.vo.StaffVO">
+		UPDATE STAFF
+		SET NAME = #{name},
+		BIRTH_DATE = #{birthDate},
+		ADDRESS = #{address},
+		TEL = #{tel},
+		DEPT = #{dept}
+		WHERE ID = #{id}
+	</update>
+
 	<!-- 로그인 -->
 	<!-- 아이디, 비밀번호 조회 -->
 	<select id="login" resultType="com.namuuniv.vo.UsersVO">
@@ -168,5 +212,15 @@
 	<select id="selectAllDepts" resultType="com.namuuniv.vo.DepartmentVO">
 		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
 	</select>
+	
+	<!-- 내정보 수정(교수) -->
+	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+		UPDATE PROFESSOR
+		SET NAME = #{name},
+		BIRTH_DATE = #{birthDate},
+		ADDRESS = #{address},
+		TEL = #{tel}
+		WHERE ID = #{id}
+	</update>
 	
 </mapper>
