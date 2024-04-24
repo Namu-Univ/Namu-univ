@@ -1,10 +1,6 @@
 package com.namuuniv.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.ProfessorDAO;
-import com.namuuniv.dao.StaffDAO;
-import com.namuuniv.dao.StudentDAO;
+import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.ProfessorVO;
 import com.namuuniv.vo.StaffVO;
 import com.namuuniv.vo.StudentVO;
@@ -36,7 +30,7 @@ public class SearchController extends HttpServlet {
 		if ("stu".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			List<StudentVO> stuList = StudentDAO.getStuInfo();
+			List<StudentVO> stuList = SearchUpdateDAO.getStuInfo();
 			System.out.println("stuList : " + stuList);
 			// 2. 응답페이지(stu_check.jsp)에 전달
 			request.setAttribute("list", stuList);
@@ -49,7 +43,7 @@ public class SearchController extends HttpServlet {
 		if ("pro".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			List<ProfessorVO> proList = ProfessorDAO.getProInfo();
+			List<ProfessorVO> proList = SearchUpdateDAO.getProInfo();
 			System.out.println("prolist : " + proList);
 			// 2. 응답페이지(pro_check.jsp)에 전달
 			request.setAttribute("list", proList);
@@ -64,7 +58,7 @@ public class SearchController extends HttpServlet {
 		if ("staff".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			List<StaffVO> staffList = StaffDAO.getStaffInfo();
+			List<StaffVO> staffList = SearchUpdateDAO.getStaffInfo();
 			System.out.println("staffList : " + staffList);
 			// 2. 응답페이지(staff_check.jsp)에 전달
 			request.setAttribute("list", staffList);
