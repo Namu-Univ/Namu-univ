@@ -5,7 +5,6 @@ import java.sql.Date;
 public class StaffVO {
 	
 	private int id;
-	private String password;
 	private String name;
 	private String birthDate; // Date -> String 으로 수정
 	private String gender;
@@ -19,12 +18,6 @@ public class StaffVO {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -71,9 +64,8 @@ public class StaffVO {
 	
 	@Override
 	public String toString() {
-		return "StaffVO [id=" + id + ", password=" + password + ", name=" + name + ", birthDate=" + birthDate
-				+ ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", hireDate=" + hireDate + ", dept="
-				+ dept + "]";
+		return "StaffVO [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", address="
+				+ address + ", tel=" + tel + ", hireDate=" + hireDate + ", dept=" + dept + "]";
 	}
 
 }

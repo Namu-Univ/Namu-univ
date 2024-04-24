@@ -6,7 +6,6 @@ public class StudentVO {
 
 	private int id;
 	private int deptId;
-	private String password;
 	private String name;
 	private String birthDate; // Date -> String 으로 수정
 	private String gender;
@@ -115,10 +114,9 @@ public class StudentVO {
 
 	@Override
 	public String toString() {
-		return "StudentVO [id=" + id + ", deptId=" + deptId + ", password=" + password + ", name=" + name
-				+ ", birthDate=" + birthDate + ", gender=" + gender + ", address=" + address + ", tel=" + tel
-				+ ", grade=" + grade + ", semester=" + semester + ", entranceDate=" + entranceDate + ", graduationDate="
-				+ graduationDate + "]";
+		return "StudentVO [id=" + id + ", deptId=" + deptId + ", name=" + name + ", birthDate=" + birthDate
+				+ ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", grade=" + grade + ", semester="
+				+ semester + ", entranceDate=" + entranceDate + ", graduationDate=" + graduationDate + "]";
 	}
 
 }
