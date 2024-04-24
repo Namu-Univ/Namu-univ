@@ -10,7 +10,7 @@ public class StaffVO {
 	private String gender;
 	private String address;
 	private String tel;
-	private String hireDate;
+	private Date hireDate;
 	private String dept;
 	
 	public int getId() {
@@ -49,10 +49,10 @@ public class StaffVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getHireDate() {
+	public Date getHireDate() {
 		return hireDate;
 	}
-	public void setHireDate(String hireDate) {
+	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
 	public String getDept() {
