@@ -37,9 +37,6 @@
                     <label for="name">이름:</label>
                     <input type="text" id="name" name="name" value="${student.name}" class="input-field"><br>
 
-                    <label for="birthDate">생년월일:</label>
-                    <input type="text" id="birthDate" name="birthDate" value="${student.birthDate}" class="input-field"><br>
-
                     <label for="address">주소:</label>
                     <input type="text" id="address" name="address" value="${student.address}" class="input-field"><br>
 

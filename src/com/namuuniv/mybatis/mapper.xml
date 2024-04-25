@@ -126,7 +126,6 @@
 	<update id="updateStudent" parameterType="StudentVO">
 		UPDATE STUDENT
 		SET NAME = #{name},
-		BIRTH_DATE = #{birthDate},
 		ADDRESS = #{address},
 		TEL = #{tel}
 		WHERE ID = #{id}

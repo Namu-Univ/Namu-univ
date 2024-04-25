@@ -3,6 +3,7 @@ package com.namuuniv.dao;
 import org.apache.ibatis.session.SqlSession;
 
 import com.namuuniv.mybatis.DBService;
+import com.namuuniv.vo.StudentVO;
 import com.namuuniv.vo.UsersVO;
 
 public class LoginDAO {

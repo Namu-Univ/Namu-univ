@@ -30,6 +30,7 @@ public class MypageController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		UsersVO loginUser = (UsersVO)session.getAttribute("loginUser");
+		System.out.println(loginUser.toString());
 		int id = loginUser.getId();
 
 		// 학생정보 조회
