@@ -12,6 +12,9 @@ public class UsersVO {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setId(String id) {
+		this.id = Integer.parseInt(id);
+	}
 	public String getPassword() {
 		return password;
 	}

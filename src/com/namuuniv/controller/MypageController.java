@@ -14,6 +14,7 @@ import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.ProfessorVO;
 import com.namuuniv.vo.StaffVO;
 import com.namuuniv.vo.StudentVO;
+import com.namuuniv.vo.UsersVO;
 
 @WebServlet("/mypage")
 public class MypageController extends HttpServlet {
@@ -27,26 +28,26 @@ public class MypageController extends HttpServlet {
 		String type = request.getParameter("type");
 		System.out.println("작업형태 type : " + type);
 
+		HttpSession session = request.getSession();
+		UsersVO loginUser = (UsersVO)session.getAttribute("loginUser");
+		int id = loginUser.getId();
+
 		// 학생정보 조회
 		if ("stu".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			HttpSession session = request.getSession();
-			int id = Integer.parseInt((String)session.getAttribute("id"));
-			List<StudentVO> stuList = SearchUpdateDAO.getStuInfo(id);
-			System.out.println("stuList : " + stuList);
-			// 2. 응답페이지(stu_check.jsp)에 전달
-			request.setAttribute("list", stuList);
-
-			// 3. 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
-			request.getRequestDispatcher("student/stu_check.jsp").forward(request, response);
+			StudentVO student = SearchUpdateDAO.getStuInfo(id);
+			System.out.println("stuList : " + student);
+			// 2. 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
+			//request.getRequestDispatcher("student/stu_check.jsp").forward(request, response);
+			response.sendRedirect("stuCheck" + "?id=" + id);
 		}
 
 		// 교수정보 조회
 		if ("pro".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			List<ProfessorVO> proList = SearchUpdateDAO.getProInfo();
+			List<ProfessorVO> proList = SearchUpdateDAO.getProInfo(id);
 			System.out.println("prolist : " + proList);
 			// 2. 응답페이지(pro_check.jsp)에 전달
 			request.setAttribute("list", proList);
@@ -61,7 +62,7 @@ public class MypageController extends HttpServlet {
 		if ("staff".equals(type)) {
 			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
-			List<StaffVO> staffList = SearchUpdateDAO.getStaffInfo();
+			List<StaffVO> staffList = SearchUpdateDAO.getStaffInfo(id);
 			System.out.println("staffList : " + staffList);
 			// 2. 응답페이지(staff_check.jsp)에 전달
 			request.setAttribute("list", staffList);

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내정보 조회(학생)</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css">
+<link href="../css/frame.css" rel="stylesheet" type="text/css">
 <style>
 .rectangle {
     display: flex;
@@ -46,27 +46,9 @@
 </style>
 </head>
 <body>
-    <div class="top">
-        <a href="#">로그인</a>
-    </div>
-    <div class="nav">
-        <div class="logo">
-            <img src="img/tree.png" alt="나무대학교 로고">나무대학교
-        </div>
-        <div class="topnav">
-            <a href="student-mypage.jsp">내정보</a>
-            <a href="#">휴학신청</a>
-            <a href="#">등록/관리</a>
-            <a href="#">공지사항</a>
-        </div>
-    </div>
+<jsp:include page="../partials/navTop.jsp"></jsp:include>
     <div class="mid">
-        <!-- Side navigation -->
-        <div class="sidenav">
-            <a href="student-mypage.jsp">내정보</a>
-            <a href="student-mypage_update.jsp">정보수정</a>
-        </div>
-        <div class="maintop">내정보 조회(학생)</div>
+    <jsp:include page="../partials/sideNav.jsp"></jsp:include>
         <!-- Page content -->
         <div class="main">
             <div class="rectangle">
@@ -83,25 +65,25 @@
                     <div>입학일</div>
                     <div>졸업일</div>
                 </div>
-                <c:forEach var="vo" items="${list}">
-                    <div>
-                        <div>${vo.id}</div>
-                        <div>${vo.deptId}</div>
-                        <div>${vo.name}</div>
-                        <div>${vo.birthDate}</div>
-                        <div>${vo.gender}</div>
-                        <div>${vo.address}</div>
-                        <div>${vo.tel}</div>
-                        <div>${vo.grade}</div>
-                        <div>${vo.semester}</div>
-                        <div>${vo.entranceDate}</div>
-                        <div>${vo.graduationDate}</div>
-                        <!-- 수정 버튼 -->
-                        <div>
-                            <a href="editStudent?id=${vo.id}">수정</a>
-                        </div>
-                    </div>
-                </c:forEach>
+                
+                 <div>
+                     <div>${vo.id}</div>
+                     <div>${vo.deptId}</div>
+                     <div>${vo.name}</div>
+                     <div>${vo.birthDate}</div>
+                     <div>${vo.gender}</div>
+                     <div>${vo.address}</div>
+                     <div>${vo.tel}</div>
+                     <div>${vo.grade}</div>
+                     <div>${vo.semester}</div>
+                     <div>${vo.entranceDate}</div>
+                     <div>${vo.graduationDate}</div>
+                     <!-- 수정 버튼 -->
+                     <div>
+                         <a href="editStudent?id=${vo.id}">수정</a>
+                     </div>
+                 </div>
+
             </div>
         </div>
     </div>

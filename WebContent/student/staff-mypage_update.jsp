@@ -18,25 +18,9 @@
 </head>
 <body>
     <div>
-        <div class="top">
-            <a href="#">로그인</a>
-        </div>
-        <div class="nav">
-            <div class="logo"><img src="img/tree.png">나무대학교</div>
-            <div class="topnav">
-                <a href="student/student-mypage.jsp">내정보</a>
-	            <a href="#">휴학신청</a>
-	            <a href="#">등록/관리</a>
-	            <a href="#">공지사항</a>
-             </div>
-        </div>
+    <jsp:include page="../partials/navTop.jsp"></jsp:include>
         <div class="mid">
-            <!-- Side navigation -->
-            <div class="sidenav">
-              	<a href="student/student-mypage.jsp">내정보</a>
-            	<a href="student/student-mypage_update.jsp">정보수정</a>
-            </div>
-            
+            <jsp:include page="../partials/sideNav.jsp"></jsp:include>
             <div class="maintop">학생 정보 수정</div>
             
             <!-- Page content -->

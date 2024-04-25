@@ -21,61 +21,67 @@ public class LoginController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = (String)request.getParameter("id");
-		String pw = (String)request.getParameter("password");
-		
-		//System.out.println("id : " + id);
-		//System.out.println("pw : " + pw);
-		
-		HttpSession session = request.getSession();
-		
-		List<UsersVO> loginChk = LoginDAO.getLogin(id, pw);
-		List<UsersVO> role = LoginDAO.getRole(id);
-		//System.out.println(" loginChk : " + loginChk);
-		
-		String errorMsg = "";
-		String userRole = "";
-		UsersVO user;
-		try {
-			//System.out.println("role: " + userRole);
-			
-			if (!loginChk.isEmpty()) {
-				user = role.get(0);
-				userRole = user.getRole();
-				session.setAttribute("id", id);
-				session.setAttribute("role", userRole);
-				//System.out.println("저장된 id : " + id);
-				
-				// 학생 내정보로 이동
-				if(userRole.equals("student")) {				
-					request.getRequestDispatcher("mypage?type=stu").forward(request, response);
-				} else if(userRole.equals("professor")) {
-					request.getRequestDispatcher("professor/professor-mypage.jsp").forward(request, response);
-				} else if(userRole.equals("staff")) {
-					request.getRequestDispatcher("staff/staff-mypage.jsp").forward(request, response);
-				} else {
-					errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
-					request.setAttribute("errorMsg", errorMsg);
-					request.getRequestDispatcher("login.jsp").forward(request, response);
-				}
-			}
-			else {
-				errorMsg = "아이디 또는 비밀번호를 다시 입력바랍니다.";
-				request.setAttribute("errorMsg", errorMsg);
-				System.out.println("로그인 실패");
-				
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		} catch (IndexOutOfBoundsException i) {
-			errorMsg = "아이디 또는 비밀번호를 입력하세요.";
-			request.setAttribute("errorMsg", errorMsg);
-
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("login.jsp").forward(request, response);
+//		try {
+//			
+//			if (!loginChk.isEmpty()) {
+//				user = role.get(0);
+//				userRole = user.getRole();
+//				session.setAttribute("id", id);
+//				session.setAttribute("role", userRole);
+//				//System.out.println("저장된 id : " + id);
+//				
+//				 else {
+//					errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
+//					request.setAttribute("errorMsg", errorMsg);
+//					request.getRequestDispatcher("login.jsp").forward(request, response);
+//				}
+//			}
+//			else {
+//				errorMsg = "아이디 또는 비밀번호를 다시 입력바랍니다.";
+//				request.setAttribute("errorMsg", errorMsg);
+//				System.out.println("로그인 실패");
+//				
+//				request.getRequestDispatcher("login.jsp").forward(request, response);
+//			}
+//		} catch (IndexOutOfBoundsException i) {
+//			errorMsg = "아이디 또는 비밀번호를 입력하세요.";
+//			request.setAttribute("errorMsg", errorMsg);
+//
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+//		}
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		UsersVO reqUser = new UsersVO();
+		reqUser.setId(request.getParameter("id"));
+		reqUser.setPassword(request.getParameter("password"));
+		
+		HttpSession session = request.getSession();
+		
+		UsersVO loginChk = LoginDAO.getLogin(reqUser);
+		System.out.println(loginChk.toString());
+		
+		// 학생 내정보로 이동
+		if (loginChk == null) {
+			String errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
+			request.setAttribute("errorMsg", errorMsg);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
+		
+		String userRole = loginChk.getRole();
+		session.setAttribute("loginUser", loginChk);
+
+		if(userRole.equals("student")) {				
+			//request.getRequestDispatcher("mypage?type=stu").forward(request, response);
+			response.sendRedirect("mypage?type=stu");
+		} else if(userRole.equals("professor")) {
+			//request.getRequestDispatcher("mypage?type=pro").forward(request, response);
+			response.sendRedirect("mypage?type=pro");
+		} else if(userRole.equals("staff")) {
+			//request.getRequestDispatcher("mypage?type=staff").forward(request, response);
+			response.sendRedirect("mypage?type=staff");
+		}
 	}
 }

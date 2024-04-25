@@ -12,23 +12,28 @@ import com.namuuniv.vo.StudentVO;
 public class SearchUpdateDAO {
 
 	// (내 정보)학생 정보 조회
-	public static List<StudentVO> getStuInfo(int id) {
+	public static StudentVO getStuInfo(int id) {
 		SqlSession sqlSession = null;
-		List<StudentVO> list = null;
 
-		try {
-			sqlSession = DBService.getFactory().openSession();
-			list = sqlSession.selectList("namu.stulist", id);
-			return list;
-
+//		try {
+//			sqlSession = DBService.getFactory().openSession();
+//			sqlSession.selectOne("namu.stulist", id);
+//			return sqlSession.selectOne("namu.stulist", id);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (sqlSession != null) {
+//				sqlSession.close();
+//			}
+//		}
+//
+//		return null;
+		try (SqlSession ss = DBService.getFactory().openSession()) {
+			return ss.selectOne("namu.stuById", id);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (sqlSession != null) {
-				sqlSession.close();
-			}
 		}
-
 		return null;
 	}
 
@@ -50,7 +55,7 @@ public class SearchUpdateDAO {
 	}
 	
 	// 교수 정보 조회
-	public static List<ProfessorVO> getProInfo() {
+	public static List<ProfessorVO> getProInfo(int id) {
 		SqlSession sqlSession = null;
 		List<ProfessorVO> list = null;
 
@@ -88,7 +93,7 @@ public class SearchUpdateDAO {
 	}
 	
 	// 교직원 정보 조회
-	public static List<StaffVO> getStaffInfo() {
+	public static List<StaffVO> getStaffInfo(int id) {
 		SqlSession sqlSession = null;
 		List<StaffVO> list = null;
 

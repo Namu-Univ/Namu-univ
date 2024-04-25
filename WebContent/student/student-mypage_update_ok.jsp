@@ -14,6 +14,6 @@
         <p>학생 정보 수정에 실패했습니다.</p>
         <!-- 실패 시 사용자에게 알리고 다시 수정 페이지로 이동하도록 설정할 수 있음 -->
     <% } %>
-    <a href="stu_check.jsp">돌아가기</a>
+    <a href="student/stu_check.jsp">돌아가기</a>
 </body>
 </html>

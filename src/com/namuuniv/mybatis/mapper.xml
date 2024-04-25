@@ -6,14 +6,14 @@
 
 	<!-- 로그인 -->
 	<!-- 아이디, 비밀번호 조회 -->
-	<select id="login" resultType="com.namuuniv.vo.UsersVO">
+	<select id="login" resultType="UsersVO" parameterType="UsersVO">
 		SELECT ID, PASSWORD, ROLE
 		FROM USERS
 		WHERE ID = #{id} AND PASSWORD = #{password}
 	</select>
 	
 	<!-- role 조회 -->
-	<select id="role" resultType="com.namuuniv.vo.UsersVO">
+	<select id="role" resultType="UsersVO" parameterType="UsersVO">
 		SELECT ROLE
 		FROM USERS
 		WHERE ID = #{id}
@@ -21,7 +21,7 @@
 	
 	<!-- 학생/교수/교직원 조회 -->
 	<!-- 학생 조회 -->
-	<select id="studentOne" parameterType="string" resultType="com.namuuniv.vo.StudentVO">
+	<select id="studentOne" parameterType="string" resultType="StudentVO">
 		SELECT S.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
 		FROM STUDENT S
 		INNER JOIN DEPARTMENT D ON S.DEPT_ID = D.ID
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 교수 조회 -->	
-	<select id="professorOne" parameterType="string" resultType="com.namuuniv.vo.ProfessorVO">
+	<select id="professorOne" parameterType="string" resultType="ProfessorVO">
 		SELECT P.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
 		FROM PROFESSOR P
 		INNER JOIN DEPARTMENT D ON P.DEPT_ID = D.ID
@@ -37,14 +37,14 @@
 	</select>
 	
 	<!-- 교직원 조회 -->	
-	<select id="staffOne" parameterType="string" resultType="com.namuuniv.vo.StaffVO">
+	<select id="staffOne" parameterType="string" resultType="StaffVO">
 		SELECT *
 		FROM STAFF
 		WHERE ID = #{ID}
 	</select>
 
 	<!-- 학생 동적 검색 -->
-	<select id="SearchStudent" parameterType="map" resultType="com.namuuniv.vo.StudentVO">
+	<select id="SearchStudent" parameterType="map" resultType="StudentVO">
 		SELECT S.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
 		FROM STUDENT S
 		INNER JOIN DEPARTMENT D ON S.DEPT_ID = D.ID
@@ -62,7 +62,7 @@
 	</select>
 	
 	<!-- 교수 동적 검색 -->
-	<select id="SearchProfessor" parameterType="map" resultType="com.namuuniv.vo.ProfessorVO">
+	<select id="SearchProfessor" parameterType="map" resultType="ProfessorVO">
 	    SELECT P.*, D.NAME AS DEPT_NAME, D.COLLEGE AS COLLEGE
 	    FROM PROFESSOR P
 	    INNER JOIN DEPARTMENT D ON P.DEPT_ID = D.ID
@@ -80,7 +80,7 @@
 	</select>
 	
 	<!-- 교직원 동적 검색 -->
-	<select id="SearchStaff" parameterType="map" resultType="com.namuuniv.vo.StaffVO">
+	<select id="SearchStaff" parameterType="map" resultType="StaffVO">
 		SELECT *
 		FROM STAFF
 		<choose>
@@ -98,15 +98,14 @@
 	
 	<!-- 학생/교수/교직원 조회 -->
 	<!-- 내정보 조회 (학생) -->
-	<select id="stulist" resultType="com.namuuniv.vo.StudentVO">
+	<select id="stuById" resultType="StudentVO" parameterType="int">
 		SELECT *
 		FROM STUDENT
 		WHERE ID = #{id}
-		ORDER BY ID
 	</select>
 
 	<!-- 내정보 조회 (교수) -->
-	<select id="prolist" resultType="com.namuuniv.vo.ProfessorVO">
+	<select id="prolist" resultType="ProfessorVO" parameterType="int">
 		SELECT *
 		FROM PROFESSOR
 		WHERE ID = #{id}
@@ -115,7 +114,7 @@
 	</select>
 
 	<!-- 내정보 조회 (교직원) -->
-	<select id="stafflist" resultType="com.namuuniv.vo.StaffVO">
+	<select id="stafflist" resultType="StaffVO" parameterType="int">
 		SELECT *
 		FROM STAFF
 		WHERE ID = #{id}
@@ -124,7 +123,7 @@
 	
 	<!-- 학생/교수/교직원 수정 -->
   	<!-- 내정보 수정 (학생) -->
-	<update id="updateStudent" parameterType="com.namuuniv.vo.StudentVO">
+	<update id="updateStudent" parameterType="StudentVO">
 		UPDATE STUDENT
 		SET NAME = #{name},
 		BIRTH_DATE = #{birthDate},
@@ -134,7 +133,7 @@
 	</update>
 
 	<!-- 내정보 수정(교직원) -->
-	<update id="updateStaff" parameterType="com.namuuniv.vo.StaffVO">
+	<update id="updateStaff" parameterType="StaffVO">
 		UPDATE STAFF
 		SET NAME = #{name},
 		BIRTH_DATE = #{birthDate},
@@ -145,7 +144,7 @@
 	</update>
 	
 	<!-- 내정보 수정(교수) -->
-	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+	<update id="updateProfessor" parameterType="ProfessorVO">
 		UPDATE PROFESSOR
 		SET NAME = #{name},
 		BIRTH_DATE = #{birthDate},
@@ -156,7 +155,7 @@
 	
 	<!-- 학생/교수/교직원 추가 -->
 	<!-- 교직원 추가 기능 -->
-	<insert id="insertStaff" parameterType="com.namuuniv.vo.StaffVO">
+	<insert id="insertStaff" parameterType="StaffVO">
 		INSERT INTO STAFF (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
 		                 , TEL, HIRE_DATE, DEPT)
 		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
@@ -164,7 +163,7 @@
 	</insert>
 	
 	<!-- 학생 추가 기능 -->
-	<insert id="insertStudent" parameterType="com.namuuniv.vo.StudentVO">
+	<insert id="insertStudent" parameterType="StudentVO">
 		INSERT INTO STUDENT (ID, DEPT_ID, NAME, BIRTH_DATE, GENDER
 		                   , ADDRESS, TEL, GRADE, SEMESTER, ENTRANCE_DATE
 		                   , GRADUATION_DATE)
@@ -174,7 +173,7 @@
 	</insert>
 	
 	<!-- 교수 추가 기능 -->
-	<insert id="insertProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
+	<insert id="insertProfessor" parameterType="ProfessorVO">
 		INSERT INTO PROFESSOR (ID, NAME, BIRTH_DATE, GENDER, ADDRESS
 		                     , TEL, HIRE_DATE, DEPT_ID)
 		VALUES (#{id}, #{name}, #{birthDate}, #{gender}, #{address}
@@ -182,7 +181,7 @@
 	</insert>
 	
 	<!-- 사용자 추가 기능 -->
-	<insert id="insertUsers" parameterType="com.namuuniv.vo.UsersVO">
+	<insert id="insertUsers" parameterType="UsersVO">
 		INSERT INTO USERS (ID, PASSWORD, ROLE)
 		VALUES(#{id}, #{password}, #{role})
 	</insert>

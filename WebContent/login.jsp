@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" type="text/css" href="css/login.css">
-
+<jsp:include page="css/loginCss.jsp"></jsp:include>
 <script>
 	function login_btn(frm) {
 		frm.action = "login";

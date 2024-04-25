@@ -21,7 +21,7 @@ public class Student_EditController extends HttpServlet {
 			throws ServletException, IOException {
 		// 학생 정보수정
 		request.getParameter("id");
-		request.setAttribute(request.getParameter("id"), "id");
+		
 		request.getRequestDispatcher("editStudent").forward(request, response);
 	}
 

@@ -34,7 +34,7 @@
 				<!-- Side navigation -->
 				<div class="sidenav">
 					<a href="mypage?type=staff">내정보</a>
-					<a href="editStaff.jsp">정보수정</a>
+					<a href="staff-mypage_update.jsp">정보수정</a>
 				</div>
 
 				<div class="maintop">내정보 조회</div>
