@@ -35,12 +35,10 @@ public class MypageController extends HttpServlet {
 
 		// 학생정보 조회
 		if ("stu".equals(type)) {
-			System.out.println(">> list 요청 처리");
 			// 1. DB연결하고 데이터 가져오기
 			StudentVO student = SearchUpdateDAO.getStuInfo(id);
-			System.out.println("stuList : " + student);
 			// 2. 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
-			//request.getRequestDispatcher("student/stu_check.jsp").forward(request, response);
+			// student/stu_check.jsp
 			response.sendRedirect("stuCheck" + "?id=" + id);
 		}
 

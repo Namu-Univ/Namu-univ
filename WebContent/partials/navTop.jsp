@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div class="top">
-    <a href="#">·Î±×ÀÎ</a>
+    <a href="#">ë¡œê·¸ì¸</a>
 </div>
 <div class="nav">
     <div class="logo">
-        <img src="../img/tree.png" alt="³ª¹«´ëÇÐ±³ ·Î°í">³ª¹«´ëÇÐ±³
+        <img src="https://res.cloudinary.com/djlee4yl2/image/upload/v1714042611/logo/NamuUnivLogo_ixcxdw.png" alt="ë‚˜ë¬´ëŒ€í•™êµ ë¡œê³ ">ë‚˜ë¬´ëŒ€í•™êµ
     </div>
     <div class="topnav">
-        <a href="student-mypage.jsp">³»Á¤º¸</a>
-        <a href="#">ÈÞÇÐ½ÅÃ»</a>
-        <a href="#">µî·Ï/°ü¸®</a>
-        <a href="#">°øÁö»çÇ×</a>
+        <a href="student-mypage.jsp">ë‚´ì •ë³´</a>
+        <a href="#">íœ´í•™ì‹ ì²­</a>
+        <a href="#">ë“±ë¡/ê´€ë¦¬</a>
+        <a href="#">ê³µì§€ì‚¬í•­</a>
     </div>
 </div>

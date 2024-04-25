@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- Side navigation -->
 <div class="sidenav">
-    <a href="student-mypage.jsp">³»Á¤º¸</a>
-    <a href="student-mypage_update.jsp">Á¤º¸¼öÁ¤</a>
+    <a href="student-mypage.jsp">ë‚´ì •ë³´</a>
+    <a href="student-mypage_update.jsp">ì •ë³´ìˆ˜ì •</a>
 </div>

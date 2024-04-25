@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>내정보 조회(학생)</title>
-<link href="../css/frame.css" rel="stylesheet" type="text/css">
+<!-- <link href="../css/frame.css" rel="stylesheet" type="text/css"> -->
+<jsp:include page="../css/frameCss.jsp"/>
 <style>
 .rectangle {
     display: flex;
