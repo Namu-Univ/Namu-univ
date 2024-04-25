@@ -20,13 +20,16 @@ public class NoticeListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Integer userId = (Integer) request.getSession().getAttribute("id");
+		// 테스트!!!!!!!!
+		request.getSession().setAttribute("id", 24028);
+		request.getSession().setAttribute("role", "staff");
+		
+		//-------
+		Integer id = (Integer) request.getSession().getAttribute("id");
+		String role = (String) request.getSession().getAttribute("role");
 		
 		// 교직원 여부 확인
-		boolean isStaff = false;
-		if (userId != null) {
-			isStaff = NoticeDAO.checkStaff(userId);
-		}
+		boolean isStaff = "staff".equals(role);
 		
 		// 현재 페이지 번호
 		String cPage = request.getParameter("cPage");
@@ -48,8 +51,7 @@ public class NoticeListController extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("isStaff", isStaff);
 		
-		request.getRequestDispatcher("notice_list").forward(request, response);
-		
+		request.getRequestDispatcher("notice_list.jsp").forward(request, response);
 	}
 	
 	@Override

@@ -31,12 +31,30 @@ public class PagingVO {
 		
 		// 페이징 블록 계산
 		nowBlock = (nowPage - 1) / pagePerBlock + 1;
-		beginPage = (nowBlock - 1) / pagePerBlock + 1;
-		endPage = nowBlock * pagePerBlock;
+		beginPage = (nowBlock - 1) * pagePerBlock + 1;
+		endPage = beginPage + pagePerBlock -1;
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 	}
+	
+	/*
+	public void calculatePagint() {
+		totalPage = (totalRecord + numPerPage - 1) / numPerPage; // 전체 페이지 수
+		totalBlock = (totalPage + pagePerBlock - 1) / pagePerBlock; // 전체 블록 수
+		
+		nowBlock = (nowPage - 1) / pagePerBlock + 1; // 현재 블록
+		beginPage = (nowBlock - 1) / pagePerBlock + 1; // 시작 블록
+		endPage = beginPage  + pagePerBlock -1; // 끝 블록
+		
+		if (endPage > totalPage) { // 끝 페이지를 전체 페이지수로 변경
+			endPage = totalPage;
+		}
+		
+		begin = (nowPage - 1) * numPerPage; // 시작 글번호
+		end = nowPage * numPerPage; // 끝 글번호
+	}
+	 */
 	
 	public int getNowPage() {
 		return nowPage;

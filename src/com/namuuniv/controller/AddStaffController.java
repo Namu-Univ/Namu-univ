@@ -50,7 +50,7 @@ public class AddStaffController extends HttpServlet {
 		} else {
 			request.setAttribute("result", "fail");
 		}
-		request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+		request.getRequestDispatcher("staff/addStaff.jsp").forward(request, response);
 	}
 
 }

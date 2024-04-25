@@ -35,14 +35,4 @@ public class NoticeDAO {
 		return null;
 	}
 	
-	// 교직원 확인 여부
-	public static boolean checkStaff(int userId) {
-		try (SqlSession ss = DBService.getFactory().openSession()) {
-			int isStaff = ss.selectOne("namu.checkStaff", userId);
-			return isStaff == 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 }

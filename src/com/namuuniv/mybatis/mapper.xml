@@ -4,50 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="namu">
 
-
-	<!-- 내정보 조회 (학생) -->
-	<select id="stulist" resultType="com.namuuniv.vo.StudentVO">
-		SELECT *
-		FROM STUDENT
-		ORDER BY ID
-	</select>
-
-	<!-- 내정보 조회 (교수) -->
-	<select id="prolist" resultType="com.namuuniv.vo.ProfessorVO">
-		SELECT *
-		FROM PROFESSOR
-		ORDER BY
-		ID
-	</select>
-
-	<!-- 내정보 조회 (교직원) -->
-	<select id="stafflist" resultType="com.namuuniv.vo.StaffVO">
-		SELECT *
-		FROM STAFF
-		ORDER BY ID
-	</select>
-
-	<!-- 내정보 수정 (학생) -->
-	<update id="updateStudent" parameterType="com.namuuniv.vo.StudentVO">
-		UPDATE STUDENT
-		SET NAME = #{name},
-		BIRTH_DATE = #{birthDate},
-		ADDRESS = #{address},
-		TEL = #{tel}
-		WHERE ID = #{id}
-	</update>
-
-	<!-- 내정보 수정(교직원) -->
-	<update id="updateStaff" parameterType="com.namuuniv.vo.StaffVO">
-		UPDATE STAFF
-		SET NAME = #{name},
-		BIRTH_DATE = #{birthDate},
-		ADDRESS = #{address},
-		TEL = #{tel},
-		DEPT = #{dept}
-		WHERE ID = #{id}
-	</update>
-
 	<!-- 로그인 -->
 	<!-- 아이디, 비밀번호 조회 -->
 	<select id="login" resultType="com.namuuniv.vo.UsersVO">
@@ -148,7 +104,7 @@
 	  	WHERE ID = #{id}
   	</update>
   
-  <!-- 교수 수정 -->
+  	<!-- 교수 수정 -->
 	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
 	  	UPDATE PROFESSOR
 	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}
@@ -160,7 +116,7 @@
 	  	UPDATE STAFF
 	  	SET NAME = #{name}, BIRTH_DATE=#{birthDate}, ADDRESS = #{address}, TEL = #{tel}, DEPT = #{dept}
 	  	WHERE ID = #{id}
-  </update>
+  	</update>
   
 	<!-- 학생/교수/교직원 추가 -->
 	<!-- 교직원 추가 기능 -->
@@ -213,16 +169,6 @@
 		SELECT ID, NAME, COLLEGE, AMOUNT FROM DEPARTMENT
 	</select>
 	
-	<!-- 내정보 수정(교수) -->
-	<update id="updateProfessor" parameterType="com.namuuniv.vo.ProfessorVO">
-		UPDATE PROFESSOR
-		SET NAME = #{name},
-		BIRTH_DATE = #{birthDate},
-		ADDRESS = #{address},
-		TEL = #{tel}
-		WHERE ID = #{id}
-	</update>
-	
 	<!-- 공지사항 글목록, 상세보기, CRUD  -->
 	<!-- 전체 공지글 수 조회-->
 	<select id="totalNoticeCount" resultType="int">
@@ -232,27 +178,18 @@
 	<!-- 페이지에 해당하는 공지글 조회 -->
 	<select id="noticeList" parameterType="map" resultType="com.namuuniv.vo.NoticeVO">
 	<![CDATA[
-		SELECT *
+		SELECT R.R_NUM, R.ID, R.TITLE, R.CONTENT, R.VIEWS,
+		       R.CREATED, R.NAME AS staffName
 		FROM (SELECT ROWNUM R_NUM, N.*
-		      FROM (SELECT *
-		            FROM NOTICE
-		            ORDER BY ID DESC
-		           )N
-		      WHERE ROWNUM <= #{end}    
-		      )
-		WHERE R_NUM >= #{begin}
+		      FROM (SELECT N.*, S.NAME
+		            FROM NOTICE N
+		            JOIN STAFF S ON N.STAFF_ID = S.ID
+		            ORDER BY N.ID DESC
+		            )N
+		      WHERE ROWNUM <= #{end}
+		      )R
+		WHERE R.R_NUM >= #{begin}
 	]]>
-	</select>
-
-	<!-- 교직원 확인 여부 -->
-	<select id="checkStaff2" parameterType="int" resultType="String">
-		SELECT ROLE FROM USERS WHERE ID = #{id}
-	</select>
-	
-	<select id="checkStaff" parameterType="int" resultType="int">
-		SELECT CASE WHEN ROLE = 'staff' THEN 1 ELSE 0 END IS_STAFF
-		FROM USERS
-		WHERE ID = #{id}
 	</select>
 	
 	<!-- 공지글 조회수 증가 -->
@@ -263,6 +200,6 @@
 	</update>
 	
 	<!-- 공지글 1개 조회(상세보기) -->
-
+	
 	
 </mapper>

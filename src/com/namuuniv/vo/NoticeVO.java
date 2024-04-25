@@ -9,6 +9,7 @@ public class NoticeVO {
 	private String content;
 	private int views;
 	private Date created;
+	private String staffName;
 	
 	public int getId() {
 		return id;
@@ -16,11 +17,11 @@ public class NoticeVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getStaff_id() {
+	public int getStaffId() {
 		return staffId;
 	}
-	public void setStaff_id(int staff_id) {
-		this.staffId = staff_id;
+	public void setStaffId(int staffId) {
+		this.staffId = staffId;
 	}
 	public String getTitle() {
 		return title;
@@ -46,11 +47,16 @@ public class NoticeVO {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+	public String getStaffName() {
+		return staffName;
+	}
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
+	}
 	
 	@Override
 	public String toString() {
-		return "NoticeVO [id=" + id + ", staff_id=" + staffId + ", title=" + title + ", content=" + content
-				+ ", views=" + views + ", created=" + created + "]";
+		return "NoticeVO [id=" + id + ", staffId=" + staffId + ", title=" + title + ", content=" + content + ", views="
+				+ views + ", created=" + created + ", staffName=" + staffName + "]";
 	}
-	
 }
