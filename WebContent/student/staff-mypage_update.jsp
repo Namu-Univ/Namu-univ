@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.namuuniv.vo.UsersVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,10 @@
         }
     </style>
 </head>
+<%
+	UsersVO user = (UsersVO)session.getAttribute("loginUser");
+	int id = user.getId();
+%>
 <body>
     <div>
     <jsp:include page="../partials/navTop.jsp"></jsp:include>
@@ -25,9 +30,8 @@
             
             <!-- Page content -->
             <div class="main">
-                <form action="student/student-mypage_update" method="post">
-                    <% String reqId = request.getParameter("id"); %>
-                    <input type="hidden" name="id" value="<%=reqId%>">
+                <form action="editStudent" method="post">
+                    <input type="hidden" name="id" value="<%=id%>">
                     <!-- ID는 readonly로 보이도록 숨겨둠 -->
 
                     <label for="name">이름:</label>

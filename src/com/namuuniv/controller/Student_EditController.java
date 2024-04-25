@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.StudentVO;
+import com.namuuniv.vo.UsersVO;
 
 @WebServlet("/editStudent")
 public class Student_EditController extends HttpServlet {
@@ -20,21 +21,15 @@ public class Student_EditController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 학생 정보수정
-		request.getParameter("id");
-		
-		request.getRequestDispatcher("editStudent").forward(request, response);
+		request.getRequestDispatcher("student/staff-mypage_update.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 학생 정보 수정 처리
-		request.setCharacterEncoding("UTF-8");
-		
 		HttpSession session = request.getSession();
-		int id = Integer.parseInt((String)session.getAttribute("id"));
-	
-//		int id = Integer.parseInt(request.getParameter("id"));
+		UsersVO user = (UsersVO)session.getAttribute("loginUser");
 		String name = request.getParameter("name");
 		String birthDate = request.getParameter("birthDate");
 		String gender = request.getParameter("gender");
@@ -43,7 +38,7 @@ public class Student_EditController extends HttpServlet {
 
 		// 학생 정보 업데이트
 		StudentVO student = new StudentVO();
-		student.setId(id);
+		student.setId(user.getId());
 		student.setName(name);
 		student.setBirthDate(birthDate);
 		student.setGender(gender);
@@ -55,6 +50,7 @@ public class Student_EditController extends HttpServlet {
 		System.out.println();
 
 		if (editStuSuccess) {
+			session.setAttribute("loginUser", student);
 			// 수정 완료 후 stu_check.jsp로 리다이렉트
 			response.sendRedirect("mypage?type=stu");
 		} else {
