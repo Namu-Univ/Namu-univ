@@ -8,7 +8,7 @@
         <img src="https://res.cloudinary.com/djlee4yl2/image/upload/v1714042611/logo/NamuUnivLogo_ixcxdw.png" alt="나무대학교 로고">나무대학교
     </div>
     <div class="topnav">
-        <a href="student-mypage.jsp">내정보</a>
+        <a href="#">내정보</a>
         <a href="#">휴학신청</a>
         <a href="#">등록/관리</a>
         <a href="#">공지사항</a>

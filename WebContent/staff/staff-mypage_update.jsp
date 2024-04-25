@@ -1,3 +1,4 @@
+<%@page import="com.namuuniv.vo.UsersVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,10 @@
         }
     </style>
 </head>
+<%
+	UsersVO user = (UsersVO) session.getAttribute("loginUser");
+	int id = user.getId();
+%>
 <body>
     <div>
         <div class="top">
@@ -42,15 +47,11 @@
             <!-- Page content -->
             <div class="main">
                 <form action="editStaff" method="post">
-                    <% String reqId = request.getParameter("id"); %>
-                    <input type="hidden" name="id" value="<%=reqId%>">
+                    <input type="hidden" name="id" value="<%=id%>">
                     <!-- ID는 readonly로 보이도록 숨겨둠 -->
 
                     <label for="name">이름:</label>
                     <input type="text" id="name" name="name" value="${staff.name}" class="input-field"><br>
-
-                    <label for="birthDate">생년월일:</label>
-                    <input type="text" id="birthDate" name="birthDate" value="${staff.birthDate}" class="input-field"><br>
 
                     <label for="address">주소:</label>
                     <input type="text" id="address" name="address" value="${staff.address}" class="input-field"><br>

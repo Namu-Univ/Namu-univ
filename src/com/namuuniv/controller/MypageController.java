@@ -35,8 +35,6 @@ public class MypageController extends HttpServlet {
 
 		// 학생정보 조회
 		if ("stu".equals(type)) {
-			// 1. DB연결하고 데이터 가져오기
-			StudentVO student = SearchUpdateDAO.getStuInfo(id);
 			// 2. 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
 			// student/stu_check.jsp
 			response.sendRedirect("stuCheck" + "?id=" + id);
@@ -59,18 +57,9 @@ public class MypageController extends HttpServlet {
 		}
 		// 교직원 정보 조회
 		if ("staff".equals(type)) {
-			System.out.println(">> list 요청 처리");
-			// 1. DB연결하고 데이터 가져오기
-			List<StaffVO> staffList = SearchUpdateDAO.getStaffInfo(id);
-			System.out.println("staffList : " + staffList);
-			// 2. 응답페이지(staff_check.jsp)에 전달
-			request.setAttribute("list", staffList);
-
 			// 3. 페이지 전환 - 응답할 페이지(staff_check.jsp)로 전환(포워딩)
-			request.getRequestDispatcher("staff/staff_check.jsp").forward(request, response);
-
+			response.sendRedirect("staffCheck" + "?id=" + id);
 		}
-
 	}
 
 	@Override

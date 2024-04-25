@@ -82,22 +82,20 @@
                             <div>입사일</div>
                             <div>부서</div>
                         </div>
-                        <c:forEach var="vo" items="${list}">
+                        <div>
+                            <div>${vo.id}</div>
+                            <div>${vo.name}</div>
+                            <div>${vo.birthDate}</div>
+                            <div>${vo.gender}</div>
+                            <div>${vo.address}</div>
+                            <div>${vo.tel}</div>
+                            <div>${vo.hireDate}</div>
+                            <div>${vo.dept}</div>
+                            <!-- 수정 버튼 -->
                             <div>
-                                <div>${vo.id}</div>
-                                <div>${vo.name}</div>
-                                <div>${vo.birthDate}</div>
-                                <div>${vo.gender}</div>
-                                <div>${vo.address}</div>
-                                <div>${vo.tel}</div>
-                                <div>${vo.hireDate}</div>
-                                <div>${vo.dept}</div>
-                                <!-- 수정 버튼 -->
-                                <div>
-                                    <a href="editStaff.jsp?id=${vo.id}">수정</a>
-                                </div>
+                                <a href="editStaff?id=${vo.id}">수정</a>
                             </div>
-                        </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>

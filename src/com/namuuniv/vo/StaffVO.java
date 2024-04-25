@@ -19,6 +19,9 @@ public class StaffVO {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setId(String id) {
+		this.id = Integer.parseInt(id);
+	}
 	public String getName() {
 		return name;
 	}

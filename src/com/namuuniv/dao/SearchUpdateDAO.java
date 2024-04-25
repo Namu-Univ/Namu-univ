@@ -70,26 +70,15 @@ public class SearchUpdateDAO {
 	}
 	
 	// 교직원 정보 조회
-	public static List<StaffVO> getStaffInfo(int id) {
-		SqlSession sqlSession = null;
-		List<StaffVO> list = null;
-
-		try {
-			sqlSession = DBService.getFactory().openSession();
-			list = sqlSession.selectList("namu.stafflist");
-			return list;
-
+	public static StaffVO getStaffInfo(int id) {
+		try (SqlSession ss = DBService.getFactory().openSession()) {
+			return ss.selectOne("namu.staffById", id);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (sqlSession != null) {
-				sqlSession.close();
-			}
 		}
-
 		return null;
 	}
-
+	
 	// 교직원 정보 수정
 	public static boolean updateStaff(StaffVO staff) {
 		try (SqlSession sqlSession = DBService.getFactory().openSession()) {

@@ -109,16 +109,13 @@
 		SELECT *
 		FROM PROFESSOR
 		WHERE ID = #{id}
-		ORDER BY
-		ID
 	</select>
 
 	<!-- 내정보 조회 (교직원) -->
-	<select id="stafflist" resultType="StaffVO" parameterType="int">
+	<select id="staffById" resultType="StaffVO" parameterType="int">
 		SELECT *
 		FROM STAFF
 		WHERE ID = #{id}
-		ORDER BY ID
 	</select>
 	
 	<!-- 학생/교수/교직원 수정 -->

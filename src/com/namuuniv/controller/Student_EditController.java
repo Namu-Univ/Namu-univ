@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.namuuniv.dao.LoginDAO;
 import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.StudentVO;
 import com.namuuniv.vo.UsersVO;
@@ -22,7 +21,7 @@ public class Student_EditController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 학생 정보수정
-		request.getRequestDispatcher("student/staff-mypage_update.jsp").forward(request, response);
+		request.getRequestDispatcher("student/stu_update.jsp").forward(request, response);
 	}
 
 	@Override
