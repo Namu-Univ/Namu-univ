@@ -15,7 +15,7 @@ public class SearchDAO {
 			//학생 조회
 			public static StudentVO studentOne(String id) {
 				try(SqlSession ss = DBService.getFactory().openSession()){
-					return ss.selectOne("NAMU.studentOne",id);
+					return ss.selectOne("namu.studentOne",id);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,7 +29,7 @@ public class SearchDAO {
 					map.put("idx", idx);
 					map.put("keyword", keyword);
 					
-					return ss.selectList("NAMU.SearchStudent", map);
+					return ss.selectList("namu.SearchStudent", map);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -39,7 +39,7 @@ public class SearchDAO {
 			//교수 조회
 			public static ProfessorVO professorOne(String id) {
 				try(SqlSession ss = DBService.getFactory().openSession()){
-					return ss.selectOne("NAMU.professorOne",id);
+					return ss.selectOne("namu.professorOne",id);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +53,7 @@ public class SearchDAO {
 					map.put("idx", idx);
 					map.put("keyword", keyword);
 					
-					return ss.selectList("NAMU.SearchProfessor", map);
+					return ss.selectList("namu.SearchProfessor", map);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -63,7 +63,7 @@ public class SearchDAO {
 			//교직원 조회
 			public static StaffVO staffOne(String id) {
 				try(SqlSession ss = DBService.getFactory().openSession()){
-					return ss.selectOne("NAMU.staffOne",id);
+					return ss.selectOne("namu.staffOne",id);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,7 +77,7 @@ public class SearchDAO {
 					map.put("idx", idx);
 					map.put("keyword", keyword);
 					
-					return ss.selectList("NAMU.SearchStaff", map);
+					return ss.selectList("namu.SearchStaff", map);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}

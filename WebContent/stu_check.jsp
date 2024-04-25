@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String reqid = request.getParameter("id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +88,7 @@
                 </div>
                 <c:forEach var="vo" items="${list}">
                     <div>
-                        <div>${vo.id}</div>
+                        <div>${vo.id }</div>
                         <div>${vo.deptId}</div>
                         <div>${vo.name}</div>
                         <div>${vo.birthDate}</div>

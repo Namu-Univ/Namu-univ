@@ -27,17 +27,22 @@ public class SearchController extends HttpServlet {
 		System.out.println("작업형태 type : " + type);
 
 		// 학생정보 조회
-		if ("stu".equals(type)) {
-			System.out.println(">> list 요청 처리");
-			// 1. DB연결하고 데이터 가져오기
-			List<StudentVO> stuList = SearchUpdateDAO.getStuInfo();
-			System.out.println("stuList : " + stuList);
-			// 2. 응답페이지(stu_check.jsp)에 전달
-			request.setAttribute("list", stuList);
+	    if ("stu".equals(type)) {
+	        System.out.println(">> list 요청 처리");
 
-			// 3. 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
-			request.getRequestDispatcher("stu_check.jsp").forward(request, response);
-		}
+	        // 학생 ID 가져오기
+	        String studentId = request.getParameter("id");
+
+	        // 학생 정보 가져오기
+	        List<StudentVO> stuList = SearchUpdateDAO.getStuInfo();
+	        System.out.println("stuList : " + stuList);
+
+	        // 응답페이지(stu_check.jsp)에 전달
+	        request.setAttribute("list", stuList);
+
+	        // 페이지 전환 - 응답할 페이지(stu_check.jsp)로 전환(포워딩)
+	        request.getRequestDispatcher("stu_check.jsp").forward(request, response);
+	    }
 
 		// 교수정보 조회
 		if ("pro".equals(type)) {
@@ -67,6 +72,8 @@ public class SearchController extends HttpServlet {
 			request.getRequestDispatcher("staff_check.jsp").forward(request, response);
 
 		}
+		
+		
 
 	}
 

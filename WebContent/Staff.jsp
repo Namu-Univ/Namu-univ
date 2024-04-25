@@ -26,7 +26,7 @@
 				<div class="topnav">
 					<a href="#">내정보</a>
 				 	<a href="staff-student_search.jsp">조회</a>
-				 	<a href="#">등록/관리</a>
+				 	<a href="check_leaveAbsence.jsp">등록/관리</a>
 				    <a href="#">공지사항</a>
 				</div>
 			</div>

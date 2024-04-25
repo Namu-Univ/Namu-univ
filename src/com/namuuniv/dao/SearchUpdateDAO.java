@@ -13,25 +13,25 @@ public class SearchUpdateDAO {
 
 	// 학생 정보 조회
 	public static List<StudentVO> getStuInfo() {
-		SqlSession sqlSession = null;
-		List<StudentVO> list = null;
+	    SqlSession sqlSession = null;
+	    List<StudentVO> list = null;
 
-		try {
-			sqlSession = DBService.getFactory().openSession();
-			list = sqlSession.selectList("namu.stulist");
-			return list;
+	    try {
+	        sqlSession = DBService.getFactory().openSession();
+	        list = sqlSession.selectList("namu.stulist");
+	        return list;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (sqlSession != null) {
-				sqlSession.close();
-			}
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (sqlSession != null) {
+	            sqlSession.close();
+	        }
+	    }
 
-		return null;
+	    return null;
 	}
-
+	
 	// 학생 정보 수정
 	public static boolean updateStudent(StudentVO student) {
 		try (SqlSession sqlSession = DBService.getFactory().openSession()) {

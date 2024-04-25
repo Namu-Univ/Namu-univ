@@ -9,11 +9,10 @@
 <link href="css/frame.css" rel="stylesheet" type="text/css">
 
 <script>
-	function stu_check(frm) {
-		frm.action = "stu_check.jsp";
-		frm.action = "controller?Type=stu";
-		frm.submit();
-	}
+function stu_check(frm) {
+    frm.action = "controller?type=stu";
+    frm.submit();
+}
 </script>
 </head>
 <body>
