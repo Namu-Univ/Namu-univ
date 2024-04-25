@@ -5,7 +5,7 @@
 </div>
 <div class="nav">
     <div class="logo">
-        <img src="img/tree.png" alt="나무대학교 로고">나무대학교
+        <img src="../img/tree.png" alt="나무대학교 로고">나무대학교
     </div>
     <div class="topnav">
         <a href="student-mypage.jsp">내정보</a>

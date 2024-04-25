@@ -5,4 +5,3 @@
     <a href="student-mypage.jsp">내정보</a>
     <a href="student-mypage_update.jsp">정보수정</a>
 </div>
-<div class="maintop">내정보 조회(학생)</div>
