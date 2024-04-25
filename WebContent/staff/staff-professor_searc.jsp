@@ -1,40 +1,39 @@
 <%@page import="com.namuuniv.mybatis.DBService"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="com.namuuniv.dao.SearchDAO"%>
-<%@page import="com.namuuniv.vo.StudentVO"%>
+<%@page import="com.namuuniv.dao.ProfileSearchDAO"%>
+<%@page import="com.namuuniv.vo.ProfessorVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<jsp:useBean id="dao" class="com.namuuniv.dao.SearchDAO" scope="session"/>
-    <%    	
-		//0.한글처리(post)
-		request.setCharacterEncoding("UTF-8");
-    	//전달받은 데이터 추출
-    	String id = request.getParameter("id");
-    	
-		///1. 학생(id) 데이터 조회 후 화면 표시
-		StudentVO svo = SearchDAO.studentOne(id);
-		System.out.println("학생 svo : " + svo);    
-		session.setAttribute("svo", svo); ///세션에 저장
-		
-		//2.
-		//2-1.sqlSession 객체 생성
-		SqlSession ss = DBService.getFactory().openSession();
-		//2-2. id 값 전달해서 DB SELECT
-		ss.selectOne("NAMU.studentOne", id);
-		
-		StudentVO vo = ss.selectOne("NAMU.studentOne", id);
-		ss.close();
-		
-		System.out.println(":: vo: " + vo);
-		//3.
-		//pageContext.setAttribute("guestbookVO", vo);
-		//session에 등록하여 수정, 삭제에서 사용
-		session.setAttribute("StudentVO", vo);
-		
-		System.out.println("> student_search_profile.jsp session StudentVO: " + 
-			session.getAttribute("StudentVO"));
-	%>
+<jsp:useBean id="dao" class="com.namuuniv.dao.ProfileSearchDAO" scope="session"/>
+  
+	    <%
+  	    //0.한글처리(post)
+  	    		request.setCharacterEncoding("UTF-8");
+  	        	//전달받은 데이터 추출
+  	        	String id = request.getParameter("id");
+  	        	
+  	    		///1. 학생(id) 데이터 조회 후 화면 표시
+  	    		ProfessorVO svo = ProfileSearchDAO.professorOne(id);
+  	    		System.out.println("교수 svo : " + svo);    
+  	    		session.setAttribute("svo", svo); ///세션에 저장
+  	    		
+  	    		//2.
+  	    		//2-1.sqlSession 객체 생성
+  	    		SqlSession ss = DBService.getFactory().openSession();
+  	    		//2-2. id 값 전달해서 DB SELECT
+  	    		ss.selectOne("namu.professorOne", id);
+  	    		
+  	    		ProfessorVO vo = ss.selectOne("namu.professorOne", id);
+  	    		ss.close();
+  	    		
+  	    		System.out.println(":: vo: " + vo);
+  	    		//session에 등록하여 수정, 삭제에서 사용
+  	    		session.setAttribute("ProfessorVO", vo);
+  	    		
+  	    		System.out.println("> professor_search_profile.jsp session ProfessorVO: " + 
+  	    	session.getAttribute("ProfessorVO"));
+  	    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +41,9 @@
 <title>회원 상세 정보</title>
 <link href="../css/frame.css" rel="stylesheet" type="text/css">
 <link href="../css/table.css" rel="stylesheet" type="text/css">
-<style>
-	.profile {
-		border-style: 1px solid black;
-	}
-</style>
 <script>
 	function modify_go(){
-		location.href="student_profile_update.jsp"; //수정화면으로 이동
+		location.href="professor_profile_update.jsp"; //수정화면으로 이동
 	}
 </script>
 </head>
@@ -76,7 +70,7 @@
 			  <a href="staff-staff_search.jsp">교직원 조회</a>
 			</div>
 			
-			<div class="maintop">학생 조회</div>
+			<div class="maintop">교수 조회</div>
 			
 			<!-- Page content -->
 			<div class="main">
@@ -87,25 +81,25 @@
 								<td>이름</td>
 								<td>${svo.name }</td>
 								<td>단과대</td>
-								<td>${svo.deptId }</td>
+								<td>${svo.college }</td>
 							</tr>
 							<tr>
 								<td>생년월일</td>
 								<td>${svo.birthDate }</td>
 								<td>학과</td>
-								<td>${svo.deptId  }</td>
+								<td>${svo.deptName }</td>
 							</tr>
 							<tr>
 								<td>전화번호</td>
 								<td>${svo.tel }</td>
-								<td>학번</td>
+								<td>교번</td>
 								<td>${svo.id }</td>
 							</tr>
 							<tr>
 								<td>주소</td>
 								<td>${svo.address } </td>
-								<td>학년</td>
-								<td>${svo.grade }</td>
+								<td></td>
+								<td></td>
 							</tr>
 						</tbody>
 						<tfoot>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.SearchDAO;
+import com.namuuniv.dao.ProfileSearchDAO;
 import com.namuuniv.vo.ProfessorVO;
 
 @WebServlet("/SearchProfessor")
@@ -32,7 +32,7 @@ public class SearchProfessorController extends HttpServlet {
 		}
 		//동적검색 처리 작업 진행
 		System.out.println(">>>동적검색 처리 작업 진행");
-		List<ProfessorVO> list = SearchDAO.getProfessorSearch(idx, keyword);
+		List<ProfessorVO> list = ProfileSearchDAO.getProfessorSearch(idx, keyword);
 		System.out.println("list: " + list);
 		
 		//동적검색 작업 형태 확인

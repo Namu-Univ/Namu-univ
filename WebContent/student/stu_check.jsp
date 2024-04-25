@@ -54,8 +54,8 @@
             <img src="img/tree.png" alt="나무대학교 로고">나무대학교
         </div>
         <div class="topnav">
-            <a href="#">내정보</a>
-            <a href="staff-student_search.jsp">조회</a>
+            <a href="student-mypage.jsp">내정보</a>
+            <a href="#">휴학신청</a>
             <a href="#">등록/관리</a>
             <a href="#">공지사항</a>
         </div>
@@ -63,8 +63,8 @@
     <div class="mid">
         <!-- Side navigation -->
         <div class="sidenav">
-            <a href="#">내정보</a>
-            <a href="#">정보수정</a>
+            <a href="student-mypage.jsp">내정보</a>
+            <a href="student-mypage_update.jsp">정보수정</a>
         </div>
         <div class="maintop">내정보 조회(학생)</div>
         <!-- Page content -->

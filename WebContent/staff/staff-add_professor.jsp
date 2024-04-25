@@ -18,10 +18,10 @@
 		<div class="nav">
 			<div class="logo"><img src="../img/tree.png">나무대학교</div>
 			  <div class="topnav">
-				  <a href="#">내정보</a>
-				  <a href="staff-student_search.jsp">조회</a>
-				  <a href="#">등록/관리</a>
-				  <a href="#">공지사항</a> 
+				<a href="staff-mypage.jsp">내정보</a>
+				<a href="staff-student_search.jsp">조회</a>
+				<a href="staff-add_student.jsp">등록/관리</a>
+				<a href="#">공지사항</a>
 			 </div>
 		</div>
 		<div class="mid">

@@ -1,4 +1,4 @@
-<%@page import="com.namuuniv.dao.SearchDAO"%>
+<%@page import="com.namuuniv.dao.ProfileSearchDAO"%>
 <%@page import="com.namuuniv.vo.StaffVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

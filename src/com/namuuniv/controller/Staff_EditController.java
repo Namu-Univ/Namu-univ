@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.StaffDAO;
+import com.namuuniv.dao.SearchUpdateDAO;
 import com.namuuniv.vo.StaffVO;
 
 @WebServlet("/editStaff")
@@ -47,7 +47,7 @@ public class Staff_EditController extends HttpServlet {
 		staff.setDept(dept);
 
 		System.out.println(staff.toString());
-		boolean editStaffSuccess = StaffDAO.updateStaff(staff);
+		boolean editStaffSuccess = SearchUpdateDAO.updateStaff(staff);
 		if (editStaffSuccess) {
 			// 수정 완료 후 staff_check.jsp 로 이동
 			response.sendRedirect("controller?type=staff");

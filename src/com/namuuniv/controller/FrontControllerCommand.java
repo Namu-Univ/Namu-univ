@@ -15,7 +15,7 @@ import com.namuuniv.command.Command;
 import com.namuuniv.command.Pro_CheckCommand;
 import com.namuuniv.command.Stu_CheckCommand;
 
-//@WebServlet("/controller")
+//@WebServlet("/mypage")
 public class FrontControllerCommand extends HttpServlet {
     private static final long serialVersionUID = 1L;
     

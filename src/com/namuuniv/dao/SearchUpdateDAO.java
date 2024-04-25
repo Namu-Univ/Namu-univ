@@ -11,14 +11,14 @@ import com.namuuniv.vo.StudentVO;
 
 public class SearchUpdateDAO {
 
-	// 학생 정보 조회
-	public static List<StudentVO> getStuInfo() {
+	// (내 정보)학생 정보 조회
+	public static List<StudentVO> getStuInfo(int id) {
 		SqlSession sqlSession = null;
 		List<StudentVO> list = null;
 
 		try {
 			sqlSession = DBService.getFactory().openSession();
-			list = sqlSession.selectList("namu.stulist");
+			list = sqlSession.selectList("namu.stulist", id);
 			return list;
 
 		} catch (Exception e) {

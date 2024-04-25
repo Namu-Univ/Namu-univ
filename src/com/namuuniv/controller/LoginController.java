@@ -48,11 +48,11 @@ public class LoginController extends HttpServlet  {
 				
 				// 학생 내정보로 이동
 				if(userRole.equals("student")) {				
-					request.getRequestDispatcher("studentMypage.jsp").forward(request, response);
+					request.getRequestDispatcher("mypage?type=stu").forward(request, response);
 				} else if(userRole.equals("professor")) {
-					request.getRequestDispatcher("professorMypage.jsp").forward(request, response);
+					request.getRequestDispatcher("professor/professor-mypage.jsp").forward(request, response);
 				} else if(userRole.equals("staff")) {
-					request.getRequestDispatcher("staffMypage.jsp").forward(request, response);
+					request.getRequestDispatcher("staff/staff-mypage.jsp").forward(request, response);
 				} else {
 					errorMsg = "로그인 오류 : 관리자에게 문의바랍니다.";
 					request.setAttribute("errorMsg", errorMsg);

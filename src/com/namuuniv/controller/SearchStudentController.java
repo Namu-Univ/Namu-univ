@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.namuuniv.dao.SearchDAO;
+import com.namuuniv.dao.ProfileSearchDAO;
 import com.namuuniv.vo.ProfessorVO;
 import com.namuuniv.vo.StudentVO;
 
@@ -33,7 +33,7 @@ public class SearchStudentController extends HttpServlet {
 		}
 		//동적검색 처리 작업 진행
 		System.out.println(">>>동적검색 처리 작업 진행");
-		List<StudentVO> list = SearchDAO.getStudentSearch(idx, keyword);
+		List<StudentVO> list = ProfileSearchDAO.getStudentSearch(idx, keyword);
 		System.out.println("list: " + list);
 		
 		//동적검색 작업 형태 확인
@@ -51,7 +51,7 @@ public class SearchStudentController extends HttpServlet {
 		req.setAttribute("title", title);
 		
 		//페이지 전환(searchList.jsp 페이지에 위임)
-		req.getRequestDispatcher("staff-student_search.jsp").forward(req, resp);
+		req.getRequestDispatcher("staff/staff-student_search.jsp").forward(req, resp);
 		
 	}
 	

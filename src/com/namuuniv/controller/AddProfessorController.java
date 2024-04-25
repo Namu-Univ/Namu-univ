@@ -15,7 +15,7 @@ import com.namuuniv.vo.DepartmentVO;
 import com.namuuniv.vo.ProfessorVO;
 
 @WebServlet("/addProfessor")
-public class ProfessorController extends HttpServlet{
+public class AddProfessorController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
